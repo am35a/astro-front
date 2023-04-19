@@ -12,6 +12,8 @@
     import sagittariusIMG from '/img/constellations/sagittarius.svg'
     import capricornIMG from '/img/constellations/capricorn.svg'
 
+    // export let currentTimeObj = {}
+
     let constellationArr = [
         {
             month: 'Jan',
@@ -87,8 +89,10 @@
         }
     ]
 
-    let constellation = 0
-    export let rotateDes = 0
+    export let day = 1 // start from 1
+    export let month = 1 // start from 1
+    let constellation = day < constellationArr[month].day ? month - 1 : month
+    export let rotateDes = constellation
         
     function rotateFn(direction) {
         direction === 'right' ?
@@ -124,6 +128,9 @@
         </div>
         <div class="period">
             {item.day} {item.month} - {constellationArr[i < 11 ? i + 1 : 0 ].day - 1} {constellationArr[i < 11 ? i + 1 : 0 ].month}
+            <!-- <div>
+                {currentTimeObj.day} {currentTimeObj.month} {currentTimeObj.year}
+            </div> -->
         </div>
     </div>
 {/each}
