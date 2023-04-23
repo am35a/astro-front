@@ -33,7 +33,7 @@ body {
     height: 100vh;
     width: 100vw;
     margin: 0;
-    background: linear-gradient(0deg, rgb(10, 10, 100) 35%, transparent 100%);
+    background: linear-gradient(0deg, rgb(16, 16, 96) 35%, transparent 100%);
 }
 main {
     display: block;
