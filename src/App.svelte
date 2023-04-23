@@ -11,11 +11,15 @@
         year: theDate.getFullYear()
     }
 
-    // console.log(currentTimeObj)
+    let gestureObj = {
+        name: undefined,
+        axis: undefined,
+        direction: undefined
+    }
+
 </script>
 
 <Stars {rotateDes} />
-<Main>
-    <Constellation bind:rotateDes {...currentTimeObj} />
+<Main bind:gestureObj>
+    <Constellation bind:rotateDes {...currentTimeObj} {gestureObj} />
 </Main>
-

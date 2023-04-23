@@ -12,8 +12,6 @@
     import sagittariusIMG from '/img/constellations/sagittarius.svg'
     import capricornIMG from '/img/constellations/capricorn.svg'
 
-    // export let currentTimeObj = {}
-
     let constellationArr = [
         {
             month: 'Jan',
@@ -93,7 +91,7 @@
     export let month = 1 // start from 1
     let constellation = day < constellationArr[month].day ? month - 1 : month
     export let rotateDes = constellation
-        
+
     function rotateFn(direction) {
         direction === 'right' ?
             ( constellation++, rotateDes++ )
@@ -106,7 +104,17 @@
                 constellation = 11
     }
 
-    // $: console.log(constellation)
+    export let gestureObj = {
+        name: undefined,
+        axis: undefined,
+        direction: undefined
+    }
+
+    $: {
+        if (gestureObj.name === 'swipe')
+            if (gestureObj.axis === 'x')
+                rotateFn(gestureObj.direction)
+    }
 
 </script>
 
@@ -134,11 +142,6 @@
         </div>
     </div>
 {/each}
-
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="left" on:click={() => rotateFn('left')}></div>
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="right" on:click={() => rotateFn('right')}></div>
 
 <style>
     img.zodiac,
@@ -169,17 +172,4 @@
     .description .period {
         color: hsla(0, 0%, 100%, 0.5);
     }
-
-    .left,
-    .right {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
-        width: 50vw;
-        height: 100vh;
-        z-index: 1;
-    }
-    .right {
-        margin-left: 50vw;
-    }
-
 </style>
