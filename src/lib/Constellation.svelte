@@ -93,9 +93,10 @@
     export let month = 1 // start from 1
     let constellation = day < constellationArr[month].day ? month - 1 : month
     export let rotateDes = constellation
+    console.log(constellation)
 
     function rotateFn(direction) {
-        direction === 'right' ?
+        direction === 'left' ?
             ( constellation++, rotateDes++ )
         :
             ( constellation--, rotateDes-- )
