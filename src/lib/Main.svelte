@@ -1,10 +1,5 @@
 <script>
-
-    export let gestureObj = {
-        name: undefined,
-        axis: undefined,
-        direction: undefined
-    }
+    import { gestureObj } from '../store/gesture'
 
     let touchstartX = 0
     let touchstartY = 0
@@ -33,33 +28,33 @@
         diffY = Math.abs(touchstartY - touchendY)
 
         if (diffX > delta) {
-            gestureObj.axis = 'x'
+            $gestureObj.axis = 'x'
             if (diffX > diffY) {
-                gestureObj.name = 'swipe'
+                $gestureObj.name = 'swipe'
                 if (touchendX < touchstartX) {
-                    gestureObj.direction = 'left'
+                    $gestureObj.direction = 'left'
                 }
                 if (touchendX > touchstartX) {
-                    gestureObj.direction = 'right'
+                    $gestureObj.direction = 'right'
                 }
 
-                console.log(gestureObj)
+                console.log($gestureObj)
                 return
             }
         }
 
         if (diffY > delta) {
-            gestureObj.axis = 'y'
+            $gestureObj.axis = 'y'
             if (diffX < diffY) {
-                gestureObj.name = 'swipe'
+                $gestureObj.name = 'swipe'
                 if (touchendY < touchstartY) {
-                    gestureObj.direction = 'up'
+                    $gestureObj.direction = 'up'
                 }
                 if (touchendY > touchstartY) {
-                    gestureObj.direction = 'down'
+                    $gestureObj.direction = 'down'
                 }
 
-                console.log(gestureObj)
+                console.log($gestureObj)
                 return
             }
         }

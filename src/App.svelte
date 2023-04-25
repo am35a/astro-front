@@ -1,4 +1,6 @@
 <script>
+    // import { gestureObj } from './store/gesture'
+
     import Constellation from './lib/Constellation.svelte'
     import Stars from './lib/Stars.svelte'
     import Main from './lib/Main.svelte'
@@ -11,15 +13,10 @@
         year: theDate.getFullYear()
     }
 
-    let gestureObj = {
-        name: undefined,
-        axis: undefined,
-        direction: undefined
-    }
-
 </script>
 
 <Stars {rotateDes} />
-<Main bind:gestureObj>
-    <Constellation bind:rotateDes {...currentTimeObj} {gestureObj} />
+
+<Main>
+    <Constellation bind:rotateDes {...currentTimeObj}/>
 </Main>

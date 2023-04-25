@@ -1,4 +1,6 @@
 <script>
+    import { gestureObj } from '../store/gesture'
+
     import aquariusIMG from '/img/constellations/aquarius.svg'
     import piscesIMG from '/img/constellations/pisces.svg'
     import ariesIMG from '/img/constellations/aries.svg'
@@ -104,16 +106,10 @@
                 constellation = 11
     }
 
-    export let gestureObj = {
-        name: undefined,
-        axis: undefined,
-        direction: undefined
-    }
-
     $: {
-        if (gestureObj.name === 'swipe')
-            if (gestureObj.axis === 'x')
-                rotateFn(gestureObj.direction)
+        if ($gestureObj.name === 'swipe')
+            if ($gestureObj.axis === 'x')
+                rotateFn($gestureObj.direction)
     }
 
 </script>
@@ -123,12 +119,12 @@
     <img
         class="zodiac"
         src={item.path}
-        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * -30}deg)`}
+        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * 30}deg)`}
         style:opacity={i !== constellation ? 0 : 1}
     >
     <div
         class="description"
-        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * -30}deg)`}
+        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * 30}deg)`}
         style:opacity={i !== constellation ? 0 : 1}
     >
         <div class="name">
