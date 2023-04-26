@@ -120,12 +120,12 @@
     <img
         class="zodiac"
         src={item.path}
-        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * 30}deg)`}
+        style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
         style:opacity={i !== constellation ? 0 : 1}
     >
     <div
         class="description"
-        style:transform={`translateX(calc(-50% + 50vw)) rotate(${(i - rotateDes) * 30}deg)`}
+        style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
         style:opacity={i !== constellation ? 0 : 1}
     >
         <div class="name">
@@ -145,7 +145,9 @@
     .description {
         grid-column: 1/-1;
         grid-row: 1/-1;
+        transform: translateX(calc(-50% + 50vw)) rotate(var(--rotate-deg));
         transition: all .75s;
+        will-change: transform;
     }
     img.zodiac {
         margin-top: 5vh;
