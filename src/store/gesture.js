@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export const gestureObj = writable(
+export let gestureObj = writable(
     {
         name: undefined,
         axis: undefined,

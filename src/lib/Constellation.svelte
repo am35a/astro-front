@@ -1,5 +1,6 @@
 <script>
     import { gestureObj } from '../store/gesture'
+    import { appObj } from '../store/app'
 
     import aquariusIMG from '/img/constellations/aquarius.svg'
     import piscesIMG from '/img/constellations/pisces.svg'
@@ -108,9 +109,23 @@
     }
 
     $: {
-        if ($gestureObj.name === 'swipe')
+        if ($gestureObj.name === 'swipe') {
             if ($gestureObj.axis === 'x')
                 rotateFn($gestureObj.direction)
+
+            if ($gestureObj.axis === 'y') {
+                if ($gestureObj.direction === 'up') {
+                    if(!$appObj.isModal) {
+                        $appObj.isModal = true // show modal
+                    }
+                } 
+                if ($gestureObj.direction === 'down') {
+                    if($appObj.isModal) {
+                        $appObj.isModal = false // hide modal
+                    }
+                } 
+            }            
+        }
     }
 
 </script>
@@ -121,11 +136,13 @@
         class="zodiac"
         src={item.path}
         style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
+        style:--translate-y={$appObj.isModal ? '-100%' : '0'}
         style:opacity={i !== constellation ? 0 : 1}
     >
     <div
         class="description"
         style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
+        style:--translate-y={$appObj.isModal ? '-100%' : '0%'}
         style:opacity={i !== constellation ? 0 : 1}
     >
         <div class="name">
@@ -145,7 +162,7 @@
     .description {
         grid-column: 1/-1;
         grid-row: 1/-1;
-        transform: translateX(calc(-50% + 50vw)) rotate(var(--rotate-deg));
+        transform: translateX(calc(-50% + 50vw)) translateY(var(--translate-y)) rotate(var(--rotate-deg));
         transition: all .75s;
         will-change: transform;
     }
