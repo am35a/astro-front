@@ -87,10 +87,10 @@
         grid-row: 1/-1;
 
         position: relative;
+        width: 100vw;
+        height: 100vh;
         display: grid;
         grid-template: 1fr/1fr;
-        /* overflow: hidden;
-        height: 100vh;
-        width: 100vw; */
+        overflow: hidden;
     }
 </style>

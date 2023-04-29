@@ -106,35 +106,46 @@
     }
 
 </script>
+<div class="constellation">
 
-{#each constellationArr as item, i}
-    <!-- svelte-ignore a11y-missing-attribute -->
-    <img
-        class="zodiac"
-        src={item.path}
-        style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-        style:--translate-y={$route.modal === 'open' ? '-100%' : '0'}
-        style:opacity={i !== constellation ? 0 : 1}
-    >
-    <div
-        class="description"
-        style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-        style:--translate-y={$route.modal === 'open' ? '-100%' : '0%'}
-        style:opacity={i !== constellation ? 0 : 1}
-    >
-        <div class="name">
-            {item.name}
+    {#each constellationArr as item, i}
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <img
+            class="zodiac"
+            src={item.path}
+            style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
+            style:--translate-y={$route.modal === 'open' ? '-100%' : '0'}
+            style:opacity={i !== constellation ? 0 : 1}
+        >
+        <div
+            class="description"
+            style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
+            style:--translate-y={$route.modal === 'open' ? '-100%' : '0%'}
+            style:opacity={i !== constellation ? 0 : 1}
+        >
+            <div class="name">
+                {item.name}
+            </div>
+            <div class="period">
+                {item.day} {item.month} - {constellationArr[i < 11 ? i + 1 : 0 ].day - 1} {constellationArr[i < 11 ? i + 1 : 0 ].month}
+            </div>
         </div>
-        <div class="period">
-            {item.day} {item.month} - {constellationArr[i < 11 ? i + 1 : 0 ].day - 1} {constellationArr[i < 11 ? i + 1 : 0 ].month}
-            <!-- <div>
-                {currentTimeObj.day} {currentTimeObj.month} {currentTimeObj.year}
-            </div> -->
-        </div>
-    </div>
-{/each}
+    {/each}
+</div>
 
 <style>
+    .constellation {
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+
+        position: inherit;
+        width: inherit;
+        height: inherit;
+        display: inherit;
+        grid-template: inherit;
+        overflow: inherit;
+    }
+
     img.zodiac,
     .description {
         grid-column: 1/-1;
