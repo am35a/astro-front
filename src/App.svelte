@@ -2,7 +2,7 @@
     import Stars from './lib/Stars.svelte'
     import Main from './lib/Main.svelte'
     import Constellation from './lib/Constellation.svelte'
-    import Modal from './lib/M-odal.svelte'
+    import Modal from './lib/Modal.svelte'
 
 
     const theDate = new Date()
