@@ -3,12 +3,15 @@
 
     import { route } from '../store/route'
 
-    let touchstartX = 0
-    let touchstartY = 0
-    let touchendX = 0
-    let touchendY = 0
+    let touchstartX = 0,
+        touchstartY = 0,
+        touchendX = 0,
+        touchendY = 0,
+        diffX = 0,
+        diffY = 0,
+        delta = 50
 
-    let _gestureObj = {
+    let gestureObj = {
         name: undefined,
         axis: undefined,
         direction: undefined
@@ -27,44 +30,38 @@
         handleGesture ()
     }
 
-    let diffX = 0
-    let diffY = 0
-    let delta = 50
-
     function handleGesture () {
-        _gestureObj={...undefined}
+        gestureObj={...undefined} // reset gestures for each handle call
 
         diffX = Math.abs(touchstartX - touchendX)
         diffY = Math.abs(touchstartY - touchendY)
 
         if (diffX > delta) {
-            _gestureObj.axis = 'x'
+            gestureObj.axis = 'x'
             if (diffX > diffY) {
-                _gestureObj.name = 'swipe'
+                gestureObj.name = 'swipe'
                 if (touchendX < touchstartX) {
-                    _gestureObj.direction = 'left'
-                }
-                if (touchendX > touchstartX) {
-                    _gestureObj.direction = 'right'
+                    gestureObj.direction = 'left'
+                } else if (touchendX > touchstartX) {
+                    gestureObj.direction = 'right'
                 }
 
-                route.gesture(_gestureObj)
+                route.gesture(gestureObj)
                 return
             }
         }
 
         if (diffY > delta) {
-            _gestureObj.axis = 'y'
+            gestureObj.axis = 'y'
             if (diffX < diffY) {
-                _gestureObj.name = 'swipe'
+                gestureObj.name = 'swipe'
                 if (touchendY < touchstartY) {
-                    _gestureObj.direction = 'up'
-                }
-                if (touchendY > touchstartY) {
-                    _gestureObj.direction = 'down'
+                    gestureObj.direction = 'up'
+                } else if (touchendY > touchstartY) {
+                    gestureObj.direction = 'down'
                 }
 
-                route.gesture(_gestureObj)
+                route.gesture(gestureObj)
                 return
             }
         }
