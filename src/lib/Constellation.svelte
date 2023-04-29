@@ -1,6 +1,5 @@
 <script>
-    import { gestureObj } from '../store/gesture'
-    import { appObj } from '../store/app'
+    import { route } from '../store/route'
 
     import aquariusIMG from '/img/constellations/aquarius.svg'
     import piscesIMG from '/img/constellations/pisces.svg'
@@ -94,37 +93,15 @@
     export let month = 1 // start from 1
     let constellation = day < constellationArr[month].day ? month - 1 : month
     export let rotateDes = constellation
-    console.log(constellation)
-
-    function rotateFn(direction) {
-        direction === 'left' ?
-            ( constellation++, rotateDes++ )
-        :
-            ( constellation--, rotateDes-- )
-        
-        if(constellation > 11)
-            constellation = 0
-        else if(constellation < 0)
-                constellation = 11
-    }
 
     $: {
-        if ($gestureObj.name === 'swipe') {
-            if ($gestureObj.axis === 'x')
-                rotateFn($gestureObj.direction)
-
-            if ($gestureObj.axis === 'y') {
-                if ($gestureObj.direction === 'up') {
-                    if(!$appObj.isModal) {
-                        $appObj.isModal = true // show modal
-                    }
-                } 
-                if ($gestureObj.direction === 'down') {
-                    if($appObj.isModal) {
-                        $appObj.isModal = false // hide modal
-                    }
-                } 
-            }            
+        if ($route.rotate) {
+            $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
+            
+            if(constellation > 11)
+                constellation = 0
+            else if(constellation < 0)
+                    constellation = 11
         }
     }
 
@@ -136,13 +113,13 @@
         class="zodiac"
         src={item.path}
         style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-        style:--translate-y={$appObj.isModal ? '-100%' : '0'}
+        style:--translate-y={$route.modal === 'open' ? '-100%' : '0'}
         style:opacity={i !== constellation ? 0 : 1}
     >
     <div
         class="description"
         style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-        style:--translate-y={$appObj.isModal ? '-100%' : '0%'}
+        style:--translate-y={$route.modal === 'open' ? '-100%' : '0%'}
         style:opacity={i !== constellation ? 0 : 1}
     >
         <div class="name">

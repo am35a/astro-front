@@ -1,10 +1,18 @@
 <script>
-    import { gestureObj } from '../store/gesture'
+    // @ts-nocheck
+
+    import { route } from '../store/route'
 
     let touchstartX = 0
     let touchstartY = 0
     let touchendX = 0
     let touchendY = 0
+
+    let _gestureObj = {
+        name: undefined,
+        axis: undefined,
+        direction: undefined
+    }
 
     function handleTouchStart (event) {
         touchstartX = ~~event.changedTouches[0].clientX
@@ -24,37 +32,39 @@
     let delta = 50
 
     function handleGesture () {
+        _gestureObj={...undefined}
+
         diffX = Math.abs(touchstartX - touchendX)
         diffY = Math.abs(touchstartY - touchendY)
 
         if (diffX > delta) {
-            $gestureObj.axis = 'x'
+            _gestureObj.axis = 'x'
             if (diffX > diffY) {
-                $gestureObj.name = 'swipe'
+                _gestureObj.name = 'swipe'
                 if (touchendX < touchstartX) {
-                    $gestureObj.direction = 'left'
+                    _gestureObj.direction = 'left'
                 }
                 if (touchendX > touchstartX) {
-                    $gestureObj.direction = 'right'
+                    _gestureObj.direction = 'right'
                 }
 
-                console.log($gestureObj)
+                route.gesture(_gestureObj)
                 return
             }
         }
 
         if (diffY > delta) {
-            $gestureObj.axis = 'y'
+            _gestureObj.axis = 'y'
             if (diffX < diffY) {
-                $gestureObj.name = 'swipe'
+                _gestureObj.name = 'swipe'
                 if (touchendY < touchstartY) {
-                    $gestureObj.direction = 'up'
+                    _gestureObj.direction = 'up'
                 }
                 if (touchendY > touchstartY) {
-                    $gestureObj.direction = 'down'
+                    _gestureObj.direction = 'down'
                 }
 
-                console.log($gestureObj)
+                route.gesture(_gestureObj)
                 return
             }
         }

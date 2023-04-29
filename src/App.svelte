@@ -1,6 +1,4 @@
 <script>
-    // import { gestureObj } from './store/gesture'
-
     import Constellation from './lib/Constellation.svelte'
     import Stars from './lib/Stars.svelte'
     import Main from './lib/Main.svelte'
