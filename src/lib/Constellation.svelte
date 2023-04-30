@@ -172,6 +172,7 @@
         font-weight: 600;
         letter-spacing: .5em;
         padding-left: .5em;
+        padding-top: .25rem;
     }
     .description .period {
         color: hsla(0, 0%, 100%, 0.5);
