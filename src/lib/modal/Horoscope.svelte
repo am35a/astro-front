@@ -1,15 +1,37 @@
 <script>
+    import { route } from '../../store/route'
 
+    let periodsArr = ['Today', 'Tomorrow', 'This week', 'Year']
+    let period = 0
+
+    function modalLock(event) {
+        // console.log(event.target.scrollTop)
+
+        if (event.target.scrollTop) {
+            route.modal('lock')
+            console.log($route.modal)
+        } else if ($route.modal !== 'open') {
+            route.modal('open')
+            console.log($route.modal)
+        }
+
+    }
 </script>
 
 <section>
-    <header>
-        <button type="button" disabled>Today</button>
-        <button type="button">Tomorrow</button>
-        <button type="button">This week</button>
-        <button type="button">Year</button>
-    </header>
-    <div class="body">
+    <div class="title">Horoscope</div>
+    <div class="button-group">
+        {#each periodsArr as item, i }
+            <button
+                disabled={period === i}
+                type="button"
+            >{item}</button>
+        {/each}
+    </div>
+    <div
+        class="body"
+        on:scroll={() => modalLock(event)}
+    >
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet recusandae iste distinctio molestiae. Voluptates suscipit numquam doloribus veniam, magni modi nisi recusandae, corporis et laborum reprehenderit exercitationem iure corrupti labore.</p>
         <p>Sapiente aperiam facilis hic placeat porro dolorum in nulla dicta beatae corporis repellat deserunt asperiores, sint fugiat repudiandae facere ex nesciunt sunt. Totam earum pariatur, ipsa tempore temporibus aperiam necessitatibus.</p>
         <p>Incidunt natus ex, ad dolore facilis quia voluptatem hic asperiores necessitatibus maiores distinctio deserunt sequi ut autem. Neque animi in error itaque, nisi voluptatum ab ut, cumque, eligendi deserunt tempora!</p>
@@ -23,17 +45,23 @@
     section {
         height: 100%;
         display: grid;
-        grid-template-rows: max-content 1fr;
+        grid-template-rows: max-content max-content 1fr;
         gap: .75rem;
     }
-    header {
+    section .title {
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .5em;
+    }
+    section .button-group {
         width: 100%;
         display: grid;
         grid-auto-flow: column;
         gap: .25rem;
         overflow: scroll;
     }
-    button {
+    section .button-group button {
         border: none;
         background-color: transparent;
         padding: .5rem 1.25rem;
@@ -41,20 +69,20 @@
         font-size: 75%;
         white-space: nowrap;
     }
-    button:not([disabled]) {
+    section .button-group button:not([disabled]) {
         color: hsla(0, 0%, 100%, 0.75);
     }
-    button[disabled] {
+    section .button-group button[disabled] {
         color: hsla(0, 0%, 100%, 0.5);
         background-color: hsla(0, 0%, 100%, 0.125);
         backdrop-filter: saturate(2) blur(.125rem);
     }
-    .body {
+    section .body {
         display: grid;
         gap: .25rem;
         overflow-y: auto;
     }
-    .body p {
+    section .body p {
         text-indent: 1rem;
     }
 </style>

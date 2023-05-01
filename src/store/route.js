@@ -4,9 +4,9 @@ import { writable } from "svelte/store"
 
 function f() {
     let data = {
-        history: ['home'],
-        segment: 'home',
-        modal: 'close', // states: close or open
+        history: ['horoscope'],
+        segment: 'horoscope',
+        modal: 'close', // states: close, open or lock
         rotate: undefined
     }
 
@@ -14,29 +14,37 @@ function f() {
 
     return {
         subscribe,
+        modal: (state) => {
+            data.modal = state
+            set(data)
+        },
         gesture: ({name = undefined, direction = undefined}) => {
             data.rotate = undefined // reset rotation for each gesture call
             if (name === 'swipe') {
                 switch (direction) {
                     case 'left':
-                        if (data.segment === 'home') {
-                            data.rotate = 'left'
+                        if (data.segment === 'horoscope') {
+                            // if(data.modal === 'close') {
+                                data.rotate = 'left'
+                            // }
                         }
                         break
                     case 'up':
-                        if (data.segment === 'home') {
+                        if (data.segment === 'horoscope') {
                             if(data.modal === 'close') {
                                 data.modal = 'open'
                             }
                         }
                         break
                     case 'right':
-                        if (data.segment === 'home') {
-                            data.rotate = 'right'
+                        if (data.segment === 'horoscope') {
+                            // if(data.modal === 'close') {
+                                data.rotate = 'right'
+                            // }
                         }
                         break
                     case 'down':
-                        if (data.segment === 'home') {
+                        if (data.segment === 'horoscope') {
                             if(data.modal === 'open') {
                                 data.modal = 'close'
                             }

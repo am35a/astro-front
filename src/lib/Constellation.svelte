@@ -94,15 +94,36 @@
     let constellation = day < constellationArr[month].day ? month - 1 : month
     export let rotateDes = constellation
 
-    $: {
-        if ($route.rotate) {
-            $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
-            
-            if(constellation > 11)
-                constellation = 0
-            else if(constellation < 0)
-                    constellation = 11
-        }
+    var translateY = undefined
+
+    // $: {
+    //     if ($route.modal === 'close') { // unlock rotation for constellation if modal not open
+    //         if ($route.rotate) {
+    //             $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
+                
+    //             if(constellation > 11)
+    //                 constellation = 0
+    //             else if(constellation < 0)
+    //                     constellation = 11
+    //         }
+    //     }
+    // }
+    $: switch ($route.modal) {
+        case 'open':
+            translateY = '-100%'
+        break
+        case 'close':
+            translateY = '0%'
+            // unlock rotation for constellation if modal not open
+            if ($route.rotate) {
+                $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
+                    
+                if(constellation > 11)
+                    constellation = 0
+                else if(constellation < 0)
+                        constellation = 11
+            }
+        break
     }
 
 </script>
@@ -114,13 +135,13 @@
             class="zodiac"
             src={item.path}
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-            style:--translate-y={$route.modal === 'open' ? '-100%' : '0'}
+            style:--translate-y={translateY}
             style:opacity={i !== constellation ? 0 : 1}
         >
         <div
             class="description"
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
-            style:--translate-y={$route.modal === 'open' ? '-100%' : '0%'}
+            style:--translate-y={translateY}
             style:opacity={i !== constellation ? 0 : 1}
         >
             <div class="name">
