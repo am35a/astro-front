@@ -16,6 +16,17 @@
         }
 
     }
+
+    $: switch ($route.rotate) {
+        case 'right':
+            if (period)
+                period--
+        break
+        case 'left':
+            if (period < periodsArr.length - 1)
+                period++
+        break
+    }
 </script>
 
 <section>
@@ -23,6 +34,7 @@
     <div class="button-group">
         {#each periodsArr as item, i }
             <button
+                on:click={() => period = i}
                 disabled={period === i}
                 type="button"
             >{item}</button>
@@ -68,14 +80,17 @@
         border-radius: 4rem;
         font-size: 75%;
         white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: .125em;
+        backdrop-filter: saturate(2) blur(.125rem);
     }
     section .button-group button:not([disabled]) {
-        color: hsla(0, 0%, 100%, 0.75);
-    }
-    section .button-group button[disabled] {
         color: hsla(0, 0%, 100%, 0.5);
         background-color: hsla(0, 0%, 100%, 0.125);
-        backdrop-filter: saturate(2) blur(.125rem);
+    }
+    section .button-group button[disabled] {
+        color: hsla(0, 0%, 100%, 0.75);
+        background-color: hsla(0, 0%, 100%, 0.25);
     }
     section .body {
         display: grid;

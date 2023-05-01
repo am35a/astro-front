@@ -19,11 +19,7 @@
         default:
             console.log(`The state of modal = ${$route.modal}`)
     }
-
 </script>
-
-<!-- style:--translate-y={$route.modal === 'open' ? '10vh' : '90vh'} -->
-<!-- style:--opacity={$route.modal === 'open' ? '100%' : '0%'} -->
 
 <article
     style:--translate-y={articleTranslateY}
@@ -52,15 +48,11 @@
 
         height: 90vh;
         padding: 0 .75rem .75rem .75rem;
-        /* border-top: .125rem solid hsla(0, 100%, 100%, .125); */
-        /* border-top-left-radius: 2rem;
-        border-top-right-radius: 2rem; */
         background-image: linear-gradient(0deg, hsla(0, 0%, 0%, .75), transparent);
         color: hsla(0, 0%, 100%, .5);
         font-size: 1.25rem;
         transform: translateY(var(--translate-y));
         hyphens: auto;
-        /* overflow: hidden; */
         opacity: var(--opacity);
 
         transition: all .75s;
@@ -73,16 +65,9 @@
         width: 100%;
         justify-self: center;
         align-self: end;
-        /* background-image: linear-gradient(0deg, hsla(0, 0%, 0%, .75), transparent); */
         color: hsla(0, 0%, 100%, 0.5);
         padding: .5rem;
-        /* z-index: 1; */
         opacity: var(--opacity);
         transition: all .75s;
     }
-    /* .shevron >  svg {
-        margin: auto;
-        transform: rotate(180deg);
-    } */
-
 </style>

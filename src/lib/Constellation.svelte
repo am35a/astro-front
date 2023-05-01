@@ -96,18 +96,6 @@
 
     var translateY = undefined
 
-    // $: {
-    //     if ($route.modal === 'close') { // unlock rotation for constellation if modal not open
-    //         if ($route.rotate) {
-    //             $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
-                
-    //             if(constellation > 11)
-    //                 constellation = 0
-    //             else if(constellation < 0)
-    //                     constellation = 11
-    //         }
-    //     }
-    // }
     $: switch ($route.modal) {
         case 'open':
             translateY = '-100%'
@@ -166,27 +154,26 @@
         grid-template: inherit;
         overflow: inherit;
     }
-
-    img.zodiac,
-    .description {
+    .constellation .zodiac,
+    .constellation .description {
         grid-column: 1/-1;
         grid-row: 1/-1;
         transform: translateX(calc(-50% + 50vw)) translateY(var(--translate-y)) rotate(var(--rotate-deg));
         transition: all .75s;
         will-change: transform;
     }
-    img.zodiac {
+    .constellation .zodiac {
         margin-top: 5vh;
         height: 95vh;
         transform-origin: bottom center;
     }
-    .description {
+    .constellation .description {
         height: 65vh;
         margin-top: 65vh;
         text-align: center;
         transform-origin: bottom center;
     }
-    .description .name {
+    .constellation .description .name {
         text-transform: uppercase;
         line-height: 175%;
         font-size: 125%;
@@ -195,7 +182,7 @@
         padding-left: .5em;
         padding-top: .25rem;
     }
-    .description .period {
+    .constellation .description .period {
         color: hsla(0, 0%, 100%, 0.5);
     }
 </style>
