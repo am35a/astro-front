@@ -13,3 +13,5 @@ export let appObj = writable(
     }
 )
 
+// export let horoscope = writable({})
+

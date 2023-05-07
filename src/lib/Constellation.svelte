@@ -91,7 +91,7 @@
 
     export let day = 1 // start from 1
     export let month = 1 // start from 1
-    let constellation = day < constellationArr[month].day ? month - 1 : month
+    export let constellation = day < constellationArr[month].day ? month - 1 : month
     export let rotateDes = constellation
 
     var translateY = undefined
