@@ -54,6 +54,8 @@
         month: theDate.getMonth(), // Jan is 0
         year: theDate.getFullYear()
     }
+
+    $: console.log(rotateDes)
 </script>
 
 <Stars {rotateDes} />
