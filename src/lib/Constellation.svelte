@@ -1,98 +1,8 @@
 <script>
     import { route } from '../store/route'
+    import { constellation, constellationArr } from '../store/app'
 
-    import aquariusIMG from '/img/constellations/aquarius.svg'
-    import piscesIMG from '/img/constellations/pisces.svg'
-    import ariesIMG from '/img/constellations/aries.svg'
-    import taurusIMG from '/img/constellations/taurus.svg'
-    import geminiIMG from '/img/constellations/gemini.svg'
-    import cancerIMG from '/img/constellations/cancer.svg'
-    import leoIMG from '/img/constellations/leo.svg'
-    import virgoIMG from '/img/constellations/virgo.svg'
-    import libraIMG from '/img/constellations/libra.svg'
-    import scorpioIMG from '/img/constellations/scorpio.svg'
-    import sagittariusIMG from '/img/constellations/sagittarius.svg'
-    import capricornIMG from '/img/constellations/capricorn.svg'
-
-    let constellationArr = [
-        {
-            month: 'Jan',
-            day: 20,
-            name: 'Aquarius',
-            path: aquariusIMG
-        },
-        {
-            month: 'Feb',
-            day: 19,
-            name: 'Pisces',
-            path: piscesIMG
-        },
-        {
-            month: 'Mar',
-            day: 21,
-            name: 'Aries',
-            path: ariesIMG
-        },
-        {
-            month: 'Apr',
-            day: 20,
-            name: 'Taurus',
-            path: taurusIMG
-        },
-        {
-            month: 'May',
-            day: 21,
-            name: 'Gemini',
-            path: geminiIMG
-        },
-        {
-            month: 'Jun',
-            day: 21,
-            name: 'Cancer',
-            path: cancerIMG
-        },
-        {
-            month: 'Jul',
-            day: 23,
-            name: 'Leo',
-            path: leoIMG
-        },
-        {
-            month: 'Aug',
-            day: 23,
-            name: 'Virgo',
-            path: virgoIMG
-        },
-        {
-            month: 'Sep',
-            day: 23,
-            name: 'Libra',
-            path: libraIMG
-        },
-        {
-            month: 'Oct',
-            day: 23,
-            name: 'Scorpio',
-            path: scorpioIMG
-        },
-        {
-            month: 'Nov',
-            day: 22,
-            name: 'Sagittarius',
-            path: sagittariusIMG
-        },
-        {
-            month: 'Dec',
-            day: 22,
-            name: 'Capricorn',
-            path: capricornIMG
-        }
-    ]
-
-    export let day = 1 // start from 1
-    export let month = 1 // start from 1
-    export let constellation = day < constellationArr[month].day ? month - 1 : month
-    export let rotateDes = constellation
+    export let rotateDes = $constellation
 
     var translateY = undefined
 
@@ -104,39 +14,41 @@
             translateY = '0%'
             // unlock rotation for constellation if modal not open
             if ($route.rotate) {
-                $route.rotate === 'left' ? ( constellation++, rotateDes++ ) : ( constellation--, rotateDes-- )
+                $route.rotate === 'left' ? ( $constellation++, rotateDes++ ) : ( $constellation--, rotateDes-- )
                     
-                if(constellation > 11)
-                    constellation = 0
-                else if(constellation < 0)
-                        constellation = 11
+                if($constellation > 11)
+                $constellation = 0
+                else if($constellation < 0)
+                $constellation = 11
             }
         break
     }
 
+    // $: rotateDes = $constellation
+
 </script>
 <div class="constellation">
 
-    {#each constellationArr as item, i}
+    {#each $constellationArr as item, i}
         <!-- svelte-ignore a11y-missing-attribute -->
         <img
             class="zodiac"
             src={item.path}
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
             style:--translate-y={translateY}
-            style:opacity={i !== constellation ? 0 : 1}
+            style:opacity={i !== $constellation ? 0 : 1}
         >
         <div
             class="description"
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
             style:--translate-y={translateY}
-            style:opacity={i !== constellation ? 0 : 1}
+            style:opacity={i !== $constellation ? 0 : 1}
         >
             <div class="name">
                 {item.name}
             </div>
             <div class="period">
-                {item.day} {item.month} - {constellationArr[i < 11 ? i + 1 : 0 ].day - 1} {constellationArr[i < 11 ? i + 1 : 0 ].month}
+                {item.day} {item.month} - {$constellationArr[i < 11 ? i + 1 : 0 ].day - 1} {$constellationArr[i < 11 ? i + 1 : 0 ].month}
             </div>
         </div>
     {/each}

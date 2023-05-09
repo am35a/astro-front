@@ -7,8 +7,6 @@
     export let horoscopeArr = []
 
     function modalLock(event) {
-        // console.log(event.target.scrollTop)
-
         if (event.target.scrollTop) {
             route.modal('lock')
             console.log($route.modal)
@@ -16,7 +14,6 @@
             route.modal('open')
             console.log($route.modal)
         }
-
     }
 
     // $: switch ($route.rotate) {
