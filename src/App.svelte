@@ -9,7 +9,7 @@
     import Modal from './lib/Modal.svelte'
     import Horoscope from './lib/modal/Horoscope.svelte'
 
-    let horoscopeArr = [[[]]]
+    let horoscopeArr
 
 	onMount(async () => {        
         let res = await fetch('/_api/horoscope.json')
@@ -34,7 +34,7 @@
 <Constellation bind:rotateDes/>
 <Main>
     <Modal>
-        {#if horoscopeArr.length > 1}
+        {#if horoscopeArr}
             <Horoscope horoscopeArr={horoscopeArr[$constellation]}/>
         {/if}
     </Modal>
