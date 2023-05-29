@@ -28,7 +28,6 @@
 
 </script>
 <div class="constellation">
-
     {#each $constellationArr as item, i}
         <!-- svelte-ignore a11y-missing-attribute -->
         <img

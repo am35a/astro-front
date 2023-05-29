@@ -3,18 +3,21 @@
 
     var articleTranslateY = undefined,
         articleOpacity = undefined,
-        SVGOpacity = undefined
+        SVGOpacity = undefined,
+        SVGTranslateY = undefined
 
     $: switch ($route.modal) {
         case 'open':
             articleTranslateY = '10vh'
             articleOpacity = '100%'
             SVGOpacity = '0%'
+            SVGTranslateY = '100%'
         break
         case 'close':
             articleTranslateY = '90vh'
             articleOpacity = '0%'
             SVGOpacity = '100%'
+            SVGTranslateY = '0%'
         break
         default:
             console.log(`The state of modal = ${$route.modal}`)
@@ -29,6 +32,7 @@
 </article>
 <svg
     style:--opacity={SVGOpacity}
+    style:--translate-y={SVGTranslateY}
     width="48" height="48"
     viewBox="0 0 24 24"
     stroke-width="1.5"
@@ -62,12 +66,13 @@
         grid-row: 1/-1;
 
         display: grid;
+        padding: .5rem;
         width: 100%;
         justify-self: center;
         align-self: end;
         color: hsla(0, 0%, 100%, 0.5);
-        padding: .5rem;
         opacity: var(--opacity);
+        transform: translateY(var(--translate-y));
         transition: all .75s;
     }
 </style>
