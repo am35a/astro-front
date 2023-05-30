@@ -1,7 +1,4 @@
 <script>
-    // import { tweened } from 'svelte/motion'
-	// import { cubicOut } from 'svelte/easing'
-
     import { userObj } from '../../store/app'
     import { route } from '../../store/route'
 
@@ -9,10 +6,6 @@
     let period = 0
 
     let bodyThis = undefined
-    // const progress = tweened(0, {
-	// 	duration: 250,
-	// 	easing: cubicOut
-	// })
 
     export let horoscopeArr = []
 
@@ -24,6 +17,11 @@
             route.modal('open')
             console.log($route.modal)
         }
+    }
+
+    function periodToogle (i) {
+        period = i
+        bodyThis.scrollTop = 0
     }
 
     // $: switch ($route.rotate) {
@@ -38,9 +36,8 @@
     // }
 
     function personalize() {
-        // progress.set(bodyThis.scrollTop)
-        // bodyThis.scrollTop = 0
         route.modal('close')
+        // bodyThis.scrollTop = 0
         // console.log('personalize', bodyThis.scrollTop)
     }
 </script>
@@ -50,7 +47,7 @@
     <div class="button-group">
         {#each periodsArr as item, i}
             <button
-                on:click={() => period = i}
+                on:click={() => periodToogle(i)}
                 disabled={period === i}
                 type="button"
             >{item}</button>
