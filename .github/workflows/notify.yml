@@ -1,0 +1,23 @@
+name: Notify
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  pull_request_review:
+    branches: [ master ]
+  issues:
+  issue_comment:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: dantonyuk/telegram-action@master
+      with:
+        token: ${{ secrets.SELDEVBOT_TOKEN_ID }}
+        destination: ${{ secrets.TELEGRAM_NOTIFICATION_CHANNEL_ID }}
