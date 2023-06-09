@@ -23,7 +23,7 @@
 
     let rotateDes
 
-
+    $: console.log('app: ', rotateDes)
     // $: console.log(rotateDes, horoscopeArr, $constellation)
 
     // $userObj.constellation = 7

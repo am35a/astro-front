@@ -68,7 +68,7 @@
         
         if (touchendY === touchstartY) {
             console.log('Tap')
-        }    
+        }
     }
 
 </script>
