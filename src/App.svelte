@@ -5,9 +5,11 @@
 
     import Stars from './lib/Stars.svelte'
     import Main from './lib/Main.svelte'
+    import Nav from './lib/Nav.svelte'
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
     import Horoscope from './lib/modal/Horoscope.svelte'
+    import { not_equal } from 'svelte/internal';
 
     let horoscopeArr
 
@@ -31,18 +33,20 @@
 </script>
 
 <Stars {rotateDes} />
-<Constellation bind:rotateDes/>
+<Constellation bind:rotateDes />
 <Main>
+    <Nav />
     <Modal>
         {#if horoscopeArr}
-            <Horoscope horoscopeArr={horoscopeArr[$constellation]}/>
+            <Horoscope horoscopeArr={horoscopeArr[$constellation]} />
         {/if}
     </Modal>
 </Main>
 
 <svelte:head>
     <style>
-        button {
+        button:not(circle) {
+            display: inline-flex;
             border: none;
             background-color: transparent;
             padding: .5rem 1.25rem;
@@ -60,6 +64,12 @@
         button[disabled] {
             color: hsla(0, 0%, 100%, 0.75);
             background-color: hsla(0, 0%, 100%, 0.25);
+        }
+        button.large {
+
+        }
+        button.circle {
+            padding: .5rem;
         }
     </style>
 </svelte:head>

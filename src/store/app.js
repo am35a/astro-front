@@ -106,9 +106,9 @@ export let userObj = writable(
     }
 )
 
-export let appObj = writable(
-    {
-        segment: 'home',
-        isModal: false
-    }
-)
+// export let appObj = writable(
+//     {
+//         segment: 'home',
+//         isModal: false
+//     }
+// )
