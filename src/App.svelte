@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte'
-    // import { route } from './store/route'
+    import { route } from './store/route'
     import { constellation, constellationArr } from './store/app'
 
     import Stars from './lib/Stars.svelte'
@@ -9,7 +9,7 @@
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
     import Horoscope from './lib/modal/Horoscope.svelte'
-    import { not_equal } from 'svelte/internal';
+    import Authorization from './lib/modal/Authorization.svelte'
 
     let horoscopeArr
 
@@ -37,8 +37,12 @@
 <Main>
     <Nav />
     <Modal>
-        {#if horoscopeArr}
-            <Horoscope horoscopeArr={horoscopeArr[$constellation]} />
+        {#if $route.segment === "horoscope"}
+            {#if horoscopeArr}
+                <Horoscope horoscopeArr={horoscopeArr[$constellation]} />
+            {/if}
+        {:else if $route.segment === "authorization"}
+            <Authorization />
         {/if}
     </Modal>
 </Main>

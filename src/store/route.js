@@ -30,7 +30,7 @@ function f() {
                                     data.rotate = 'left'
                                 // }
                                 break
-                            case 'login':
+                            case 'authorization':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -41,13 +41,11 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                if (data.segment === 'horoscope') {
-                                    if(data.modal === 'close') {
-                                        data.modal = 'open'
-                                    }
+                                if(data.modal === 'close') {
+                                    data.modal = 'open'
                                 }
                                 break
-                            case 'login':
+                            case 'authorization':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -58,13 +56,11 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                if (data.segment === 'horoscope') {
-                                    // if(data.modal === 'close') {
-                                        data.rotate = 'right'
-                                    // }
-                                }
+                                // if(data.modal === 'close') {
+                                    data.rotate = 'right'
+                                // }
                                 break
-                            case 'login':
+                            case 'authorization':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -75,13 +71,14 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                if (data.segment === 'horoscope') {
-                                    if(data.modal === 'open') {
-                                        data.modal = 'close'
-                                    }
+                                if(data.modal === 'open') {
+                                    data.modal = 'close'
                                 }
                                 break
-                            case 'login':
+                            case 'authorization':
+                                if(data.modal === 'open') {
+                                    data.modal = 'close'
+                                }
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
