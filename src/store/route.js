@@ -23,35 +23,73 @@ function f() {
             if (name === 'swipe') {
                 switch (direction) {
                     case 'left':
-                        if (data.segment === 'horoscope') {
-                            // if(data.modal === 'close') {
-                                data.rotate = 'left'
-                            // }
+
+                        switch (data.segment) {
+                            case 'horoscope':
+                                // if(data.modal === 'close') {
+                                    data.rotate = 'left'
+                                // }
+                                break
+                            case 'login':
+                                break
+                            default:
+                                console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
+
                         break
                     case 'up':
-                        if (data.segment === 'horoscope') {
-                            if(data.modal === 'close') {
-                                data.modal = 'open'
-                            }
+
+                        switch (data.segment) {
+                            case 'horoscope':
+                                if (data.segment === 'horoscope') {
+                                    if(data.modal === 'close') {
+                                        data.modal = 'open'
+                                    }
+                                }
+                                break
+                            case 'login':
+                                break
+                            default:
+                                console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
+
                         break
                     case 'right':
-                        if (data.segment === 'horoscope') {
-                            // if(data.modal === 'close') {
-                                data.rotate = 'right'
-                            // }
+
+                        switch (data.segment) {
+                            case 'horoscope':
+                                if (data.segment === 'horoscope') {
+                                    // if(data.modal === 'close') {
+                                        data.rotate = 'right'
+                                    // }
+                                }
+                                break
+                            case 'login':
+                                break
+                            default:
+                                console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
+
                         break
                     case 'down':
-                        if (data.segment === 'horoscope') {
-                            if(data.modal === 'open') {
-                                data.modal = 'close'
-                            }
+
+                        switch (data.segment) {
+                            case 'horoscope':
+                                if (data.segment === 'horoscope') {
+                                    if(data.modal === 'open') {
+                                        data.modal = 'close'
+                                    }
+                                }
+                                break
+                            case 'login':
+                                break
+                            default:
+                                console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
+
                         break
                     default:
-                        console.error(`Sorry, we are error in ${name} of route!`)
+                        console.error(`Sorry, we are route error in name: ${name} > direction: ${direction}!`)
                 }
             }
             set(data)

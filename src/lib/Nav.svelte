@@ -34,6 +34,7 @@
         align-self: end;
         padding: 1rem;
         transition: all .75s;
+        z-index: 1;
     }
     nav.up {
         transform: translateY(calc(-100vh + 100%));

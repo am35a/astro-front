@@ -27,13 +27,15 @@
     // $: switch ($route.rotate) {
     //     case 'right':
     //         if (period)
-    //             period--
+    //             periodToogle(period - 1)
     //     break
     //     case 'left':
     //         if (period < periodsArr.length - 1)
-    //             period++
+    //             periodToogle(period + 1)
     //     break
     // }
+
+    $: console.log('horoscope: ', period)
 
     function personalize() {
         route.modal('close')
@@ -50,6 +52,7 @@
                 on:click={() => periodToogle(i)}
                 disabled={period === i}
                 type="button"
+                class="${i}"
             >{item}</button>
         {/each}
     </div>
