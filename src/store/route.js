@@ -38,7 +38,14 @@ function f() {
 
                         break
                     case 'up':
-
+                        /*{
+                            restarting the segment:
+                            return after opening the authorization window to the segment of horoscopes
+                        */
+                        if (data.segment === 'authorization') {
+                            route.back()
+                        }
+                        /*}*/
                         switch (data.segment) {
                             case 'horoscope':
                                 if(data.modal === 'close') {
@@ -78,6 +85,7 @@ function f() {
                             case 'authorization':
                                 if(data.modal === 'open') {
                                     data.modal = 'close'
+                                    // route.back()
                                 }
                                 break
                             default:
