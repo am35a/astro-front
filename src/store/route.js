@@ -32,6 +32,8 @@ function f() {
                                 break
                             case 'authorization':
                                 break
+                            case 'account':
+                                break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
@@ -42,7 +44,8 @@ function f() {
                             restarting the segment:
                             return after opening the authorization window to the segment of horoscopes
                         */
-                        if (data.segment === 'authorization') {
+                        if (data.segment === 'authorization' || data.segment === 'account') {
+                            data.rotate = undefined
                             route.back()
                         }
                         /*}*/
@@ -53,6 +56,8 @@ function f() {
                                 }
                                 break
                             case 'authorization':
+                                break
+                            case 'account':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -68,6 +73,8 @@ function f() {
                                 // }
                                 break
                             case 'authorization':
+                                break
+                            case 'account':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -85,7 +92,17 @@ function f() {
                             case 'authorization':
                                 if(data.modal === 'open') {
                                     data.modal = 'close'
-                                    // route.back()
+                                    setTimeout(function(){
+                                        route.back()
+                                    }, 350);
+                                }
+                                break
+                            case 'account':
+                                if(data.modal === 'open') {
+                                    data.modal = 'close'
+                                    setTimeout(function(){
+                                        route.back()
+                                    }, 350);
                                 }
                                 break
                             default:

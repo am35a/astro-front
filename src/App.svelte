@@ -10,6 +10,7 @@
     import Modal from './lib/Modal.svelte'
     import Horoscope from './lib/modal/Horoscope.svelte'
     import Authorization from './lib/modal/Authorization.svelte'
+    import Account from './lib/modal/Account.svelte'
 
     let horoscopeArr
 
@@ -43,6 +44,8 @@
             {/if}
         {:else if $route.segment === "authorization"}
             <Authorization />
+        {:else if $route.segment === "account"}
+            <Account />
         {/if}
     </Modal>
 </Main>

@@ -4,6 +4,8 @@
     import { userObj } from '../store/app'
 
     function userAccount() {
+        route.goto('account')
+        route.modal('open')
         console.log('nav: userAccount')
     }
 
