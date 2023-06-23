@@ -1,5 +1,14 @@
 <script>
+    import { userObj } from '../../store/app'
+    import { route } from '../../store/route'
 
+    function signin () {
+        $userObj.isAuthorized = true
+        route.modal('close')
+        setTimeout(function(){
+            route.back()
+        }, 350);
+    }
 </script>
 
 <section>
@@ -7,6 +16,7 @@
     <div class="body">
         <p>Use your Google Account</p>
         <button
+            on:click={signin}
             class="signin"
             type="button"
         >Sign in</button>
