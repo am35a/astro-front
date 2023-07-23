@@ -29,8 +29,6 @@
     $: console.log('app: ', rotateDes)
     // $: console.log(rotateDes, horoscopeArr, $constellation)
 
-    // $userObj.constellation = 7
-
 </script>
 
 <Stars {rotateDes} />

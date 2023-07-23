@@ -99,6 +99,17 @@ function constellationNumber() {
 }
 export let constellation = writable(constellationNumber())
 
+function constellationNN() {
+    const
+        theDate = new Date(),
+        day = theDate.getDate(),
+        month = theDate.getMonth(),
+        number = day < get(constellationArr)[month].day ? month - 1 : month,
+        name = get(constellationArr)[number].name
+	
+    return {number, name}
+}
+export let constellationObj = writable(constellationNN())
 
 export let userObj = writable(
     {
