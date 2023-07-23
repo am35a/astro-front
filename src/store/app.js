@@ -89,17 +89,17 @@ export const constellationArr = readable(
     ]
 )
 
-function constellationNumber() {
-    const
-        theDate = new Date(),
-        day = theDate.getDate(),
-        month = theDate.getMonth()
+// function constellationNumber() {
+//     const
+//         theDate = new Date(),
+//         day = theDate.getDate(),
+//         month = theDate.getMonth()
 	
-	return day < get(constellationArr)[month].day ? month - 1 : month
-}
-export let constellation = writable(constellationNumber())
+// 	return day < get(constellationArr)[month].day ? month - 1 : month
+// }
+// export let constellation = writable(constellationNumber())
 
-function constellationNN() {
+function constellation() {
     const
         theDate = new Date(),
         day = theDate.getDate(),
@@ -109,7 +109,7 @@ function constellationNN() {
 	
     return {number, name}
 }
-export let constellationObj = writable(constellationNN())
+export let constellationObj = writable(constellation())
 
 export let userObj = writable(
     {

@@ -1,8 +1,8 @@
 <script>
     import { route } from '../store/route'
-    import { constellation, constellationArr } from '../store/app'
+    import { constellationObj, constellationArr } from '../store/app'
 
-    export let rotateDes = $constellation
+    export let rotateDes = $constellationObj.number
 
     var translateY = undefined
 
@@ -14,17 +14,17 @@
             translateY = '0%'
             // unlock rotation for constellation if modal not open
             if ($route.rotate) {
-                $route.rotate === 'left' ? ( $constellation++, rotateDes++ ) : ( $constellation--, rotateDes-- )
+                $route.rotate === 'left' ? ( $constellationObj.number++, rotateDes++ ) : ( $constellationObj.number--, rotateDes-- )
                     
-                if($constellation > 11)
-                $constellation = 0
-                else if($constellation < 0)
-                $constellation = 11
+                if($constellationObj.number > 11)
+                $constellationObj.number = 0
+                else if($constellationObj.number < 0)
+                $constellationObj.number = 11
             }
         break
     }
 
-    // $: rotateDes = $constellation
+    // $: rotateDes = $constellationObj.number
 
 </script>
 <div class="constellation">
@@ -35,13 +35,13 @@
             src={item.path}
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
             style:--translate-y={translateY}
-            style:opacity={i !== $constellation ? 0 : 1}
+            style:opacity={i !== $constellationObj.number ? 0 : 1}
         >
         <div
             class="description"
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
             style:--translate-y={translateY}
-            style:opacity={i !== $constellation ? 0 : 1}
+            style:opacity={i !== $constellationObj.number ? 0 : 1}
         >
             <div class="name">
                 {item.name}

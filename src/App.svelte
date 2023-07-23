@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte'
     import { route } from './store/route'
-    import { constellation, constellationArr } from './store/app'
+    import { constellationObj, constellationArr } from './store/app'
 
     import Stars from './lib/Stars.svelte'
     import Main from './lib/Main.svelte'
@@ -27,7 +27,7 @@
     let rotateDes
 
     $: console.log('app: ', rotateDes)
-    // $: console.log(rotateDes, horoscopeArr, $constellation)
+    // $: console.log(rotateDes, horoscopeArr, $constellationObj.number)
 
 </script>
 
@@ -38,7 +38,7 @@
     <Modal>
         {#if $route.segment === "horoscope"}
             {#if horoscopeArr}
-                <Horoscope horoscopeArr={horoscopeArr[$constellation]} />
+                <Horoscope horoscopeArr={horoscopeArr[$constellationObj.number]} />
             {/if}
         {:else if $route.segment === "authorization"}
             <Authorization />
