@@ -28,7 +28,7 @@
     style:--translate-y={articleTranslateY}
     style:--opacity={articleOpacity}
 >
-    <slot></slot>
+    <slot />
 </article>
 <svg
     style:--opacity={SVGOpacity}

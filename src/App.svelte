@@ -4,6 +4,7 @@
     import { constellationObj, constellationArr } from './store/app'
 
     import Stars from './lib/Stars.svelte'
+    import Loader from './lib/Loader.svelte'
     import Main from './lib/Main.svelte'
     import Nav from './lib/Nav.svelte'
     import Constellation from './lib/Constellation.svelte'
@@ -14,7 +15,7 @@
 
     let horoscopeArr
 
-	onMount(async () => {        
+	onMount(async () => {
         let res = await fetch('/_api/horoscope.json')
         
         if (res.ok) {
@@ -24,29 +25,49 @@
         }
 	})
 
+    async function getHoroscopes() {
+		const res = await fetch('/_api/horoscopes_new.json')
+		const horoscopesObj = await res.json()
+
+		if (res.ok)
+			return horoscopesObj
+		else
+			throw new Error(horoscopesObj)
+	}
+
+	let promise = getHoroscopes()
     let rotateDes
 
-    $: console.log('app: ', rotateDes)
-    // $: console.log(rotateDes, horoscopeArr, $constellationObj.number)
-
+    $: console.log('app: ', `rotate = ${rotateDes}`, `cons..on name = ${$constellationObj.name}`)
 </script>
 
 <Stars {rotateDes} />
-<Constellation bind:rotateDes />
-<Main>
-    <Nav />
-    <Modal>
-        {#if $route.segment === "horoscope"}
-            {#if horoscopeArr}
-                <Horoscope horoscopeArr={horoscopeArr[$constellationObj.number]} />
+{#await promise}
+    <Loader>
+        ... waiting for data
+    </Loader>
+{:then horoscopesObj}
+    <Constellation bind:rotateDes />
+    <Main>
+        <Nav />
+        <Modal>
+            {#if $route.segment === "horoscope"}
+                {#if horoscopeArr}
+                    <Horoscope horoscopeArr={horoscopeArr[$constellationObj.number]} />
+                {/if}
+            {:else if $route.segment === "authorization"}
+                <Authorization />
+            {:else if $route.segment === "account"}
+                <Account />
             {/if}
-        {:else if $route.segment === "authorization"}
-            <Authorization />
-        {:else if $route.segment === "account"}
-            <Account />
-        {/if}
-    </Modal>
-</Main>
+        </Modal>
+    </Main>
+    <!-- <p>The number is {horoscopesObj.date}</p> -->
+{:catch error}
+    <Loader class="error">
+        {error.message}
+    </Loader>
+{/await}
 
 <svelte:head>
     <style>
