@@ -2,7 +2,7 @@
     import { userObj } from '../../store/app'
     import { route } from '../../store/route'
 
-    let periodsArr = ['Today', 'Tomorrow', 'This week', 'Year']
+    let periodsArr = ['Daily', 'Weekly', 'Monthly', 'Yearly']
     let period = 0
 
     let bodyThis = undefined
@@ -35,7 +35,7 @@
     //     break
     // }
 
-    $: console.log('horoscope: ', period)
+    // $: console.log('horoscope: ', periodsArr[period])
 
     function personalize() {
         route.modal('close')
@@ -62,9 +62,9 @@
         on:scroll={modalLock}
         bind:this={bodyThis}
     >
-        {#each horoscopeArr[period] as text}
-            <p>{text}</p>
-        {/each}
+        <p>
+            {@html horoscopeArr.find(obj => obj.period === periodsArr[period]).text}
+        </p>
 
         {#if !$userObj.isAuthorized}
             <button
@@ -109,7 +109,7 @@
     section .body {
         display: grid;
         gap: .25rem;
-        align-content: baseline;
+        align-content: space-between;
         overflow-y: auto;
     }
     section .body p {
@@ -121,5 +121,6 @@
         display: flex;
         gap: 1rem;
         align-items: center;
+        align-self: end;
     }
 </style>

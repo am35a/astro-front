@@ -14,8 +14,6 @@
         display: grid;
         width: 100vw;
         height: 100vh;
-
-        /* transition: all .75s; */
     }
     article:not(.error) section {
         color: hsla(0, 0%, 100%, .5);

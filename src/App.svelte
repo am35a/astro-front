@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte'
     import { route } from './store/route'
-    import { constellationObj, constellationArr } from './store/app'
+    import { constellationObj } from './store/app'
 
     import Stars from './lib/Stars.svelte'
     import Loader from './lib/Loader.svelte'
@@ -10,35 +10,27 @@
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
     import Horoscope from './lib/modal/Horoscope.svelte'
+
     import Authorization from './lib/modal/Authorization.svelte'
     import Account from './lib/modal/Account.svelte'
 
-    let horoscopeArr
-
-	onMount(async () => {
-        let res = await fetch('/_api/horoscope.json')
-        
-        if (res.ok) {
-            horoscopeArr = await res.json()
-        } else {
-            console.error(`Error: ${res.status}`)
-        }
-	})
-
     async function getHoroscopes() {
-		const res = await fetch('/_api/horoscopes_new.json')
-		const horoscopesObj = await res.json()
+		// const res = await fetch('/_api/horoscopes_new.json')
+        const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
+		const entObj = await res.json()
 
 		if (res.ok)
-			return horoscopesObj
+			return entObj
 		else
-			throw new Error(horoscopesObj)
+			throw new Error(entObj)
 	}
 
 	let promise = getHoroscopes()
     let rotateDes
 
-    $: console.log('app: ', `rotate = ${rotateDes}`, `cons..on name = ${$constellationObj.name}`)
+    function findHoroscopes(horoscopesArr, name) {
+        return horoscopesArr.filter(h => h.sign == name)
+    }
 </script>
 
 <Stars {rotateDes} />
@@ -46,15 +38,13 @@
     <Loader>
         ... waiting for data
     </Loader>
-{:then horoscopesObj}
+{:then entObj}
     <Constellation bind:rotateDes />
     <Main>
         <Nav />
         <Modal>
             {#if $route.segment === "horoscope"}
-                {#if horoscopeArr}
-                    <Horoscope horoscopeArr={horoscopeArr[$constellationObj.number]} />
-                {/if}
+                <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
             {:else if $route.segment === "authorization"}
                 <Authorization />
             {:else if $route.segment === "account"}
