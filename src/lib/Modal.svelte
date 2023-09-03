@@ -1,4 +1,6 @@
 <script>
+    // @ts-nocheck
+    
     import { route } from '../store/route'
 
     var articleTranslateY = undefined,

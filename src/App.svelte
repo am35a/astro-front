@@ -1,5 +1,7 @@
 <script>
-    import { onMount } from 'svelte'
+    // @ts-nocheck
+
+    // import { onMount } from 'svelte'
     import { route } from './store/route'
     import { constellationObj } from './store/app'
 
@@ -15,8 +17,8 @@
     import Account from './lib/modal/Account.svelte'
 
     async function getHoroscopes() {
-		// const res = await fetch('/_api/horoscopes_new.json')
-        const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
+		const res = await fetch('/_api/horoscopes_new.json')
+        // const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
 		const entObj = await res.json()
 
 		if (res.ok)
@@ -80,9 +82,6 @@
         button[disabled] {
             color: hsla(0, 0%, 100%, 0.75);
             background-color: hsla(0, 0%, 100%, 0.25);
-        }
-        button.large {
-
         }
         button.circle {
             padding: .5rem;
