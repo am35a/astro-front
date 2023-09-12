@@ -1,16 +1,18 @@
 <script>
-    import { onMount } from 'svelte'
+    // @ts-nocheck
+
+    // import { onMount } from 'svelte'
     import { route } from './store/route'
     import { constellationObj } from './store/app'
 
     import Stars from './lib/Stars.svelte'
     import Loader from './lib/Loader.svelte'
     import Main from './lib/Main.svelte'
-    import Nav from './lib/Nav.svelte'
+    // import Nav from './lib/Nav.svelte'
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
-    import Horoscope from './lib/modal/Horoscope.svelte'
 
+    import Horoscope from './lib/modal/Horoscope.svelte'
     import Authorization from './lib/modal/Authorization.svelte'
     import Account from './lib/modal/Account.svelte'
 
@@ -41,7 +43,7 @@
 {:then entObj}
     <Constellation bind:rotateDes />
     <Main>
-        <Nav />
+        <!-- <Nav /> -->
         <Modal>
             {#if $route.segment === "horoscope"}
                 <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
@@ -80,9 +82,6 @@
         button[disabled] {
             color: hsla(0, 0%, 100%, 0.75);
             background-color: hsla(0, 0%, 100%, 0.25);
-        }
-        button.large {
-
         }
         button.circle {
             padding: .5rem;

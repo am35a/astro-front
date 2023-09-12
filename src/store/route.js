@@ -7,6 +7,7 @@ function f() {
         history: ['horoscope'],
         segment: 'horoscope',
         modal: 'close', // states: close, open or lock
+        modalMotion: false,
         rotate: undefined
     }
 
@@ -16,6 +17,10 @@ function f() {
         subscribe,
         modal: (state) => {
             data.modal = state
+            set(data)
+        },
+        modalMotion: (state) => {
+            data.modalMotion = state
             set(data)
         },
         gesture: ({name = undefined, direction = undefined}) => {
@@ -44,10 +49,10 @@ function f() {
                             restarting the segment:
                             return after opening the authorization window to the segment of horoscopes
                         */
-                        if (data.segment === 'authorization' || data.segment === 'account') {
-                            data.rotate = undefined
-                            route.back()
-                        }
+                        // if (data.segment === 'authorization' || data.segment === 'account') {
+                        //     data.rotate = undefined
+                        //     route.back()
+                        // }
                         /*}*/
                         switch (data.segment) {
                             case 'horoscope':
@@ -58,6 +63,9 @@ function f() {
                             case 'authorization':
                                 break
                             case 'account':
+                                // setTimeout(function(){
+                                    route.back()
+                                // }, 350)
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -117,7 +125,7 @@ function f() {
             set(data)
         },
         goto: (route) => {
-            if(data.history[data.history.length - 1] !== route) {
+            if(data.history.at(-1) !== route) {
                 data.history.push(route)
                 data.segment = route
                 set(data)
@@ -127,10 +135,10 @@ function f() {
         back: () => {
             if(data.history.length > 1) {
                 data.history.pop()
-                data.segment = data.history[data.history.length - 1]
-                if(data.segment === 'about' || data.segment === 'help')
-                    route.back()
-                else
+                data.segment = data.history.at(-1)
+                // if(data.segment === 'about' || data.segment === 'help')
+                //     route.back()
+                // else
                     set(data)
                 // data.isHistory = true
             }

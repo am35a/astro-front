@@ -1,4 +1,6 @@
 <script>
+    // @ts-nocheck
+    import Button from '../components/Button.svelte'
     import { userObj } from '../../store/app'
     import { route } from '../../store/route'
 
@@ -10,13 +12,13 @@
     export let horoscopeArr = []
 
     function modalLock(event) {
-        if (event.target.scrollTop) {
-            route.modal('lock')
-            console.log($route.modal)
-        } else if ($route.modal !== 'open') {
-            route.modal('open')
-            console.log($route.modal)
-        }
+        // if (event.target.scrollTop) {
+        //     route.modal('lock')
+        //     console.log($route.modal)
+        // } else if ($route.modal !== 'open') {
+        //     route.modal('open')
+        //     console.log($route.modal)
+        // }
     }
 
     function periodToogle (i) {
@@ -38,7 +40,12 @@
     // $: console.log('horoscope: ', periodsArr[period])
 
     function personalize() {
-        route.modal('close')
+        // route.modal('close')
+        // setTimeout(function() {
+            route.goto('authorization')
+            // route.modal('open')
+        // }, 350);
+
         // bodyThis.scrollTop = 0
         // console.log('personalize', bodyThis.scrollTop)
     }
@@ -48,12 +55,11 @@
     <div class="title">Horoscope</div>
     <div class="button-group">
         {#each periodsArr as item, i}
-            <button
+            <Button
                 on:click={() => periodToogle(i)}
                 disabled={period === i}
-                type="button"
                 class="${i}"
-            >{item}</button>
+            >{item}</Button>
         {/each}
     </div>
 
@@ -62,26 +68,29 @@
         on:scroll={modalLock}
         bind:this={bodyThis}
     >
-        <p>
+        <div class="text">
             {@html horoscopeArr.find(obj => obj.period === periodsArr[period]).text}
-        </p>
+        </div>
 
         {#if !$userObj.isAuthorized}
-            <button
-                on:click={personalize}
-                class="personalize"
-                type="button"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3" />
-                    <path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6" />
-                    <path d="M12 11v2a14 14 0 0 0 2.5 8" />
-                    <path d="M8 15a18 18 0 0 0 1.8 6" />
-                    <path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95" />
-                </svg>
-                Get personal horoscope!
-            </button>
+            <div class="personalize">
+                <Button
+                    on:click={personalize}
+                    class="personalize"
+                    m=".5rem 0 .25rem 0"
+                    disabled={route.modalMotion}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3" />
+                        <path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6" />
+                        <path d="M12 11v2a14 14 0 0 0 2.5 8" />
+                        <path d="M8 15a18 18 0 0 0 1.8 6" />
+                        <path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95" />
+                    </svg>
+                    Get personal horoscope!
+                </Button>
+            </div>
         {/if}
     </div>
 </section>
@@ -112,15 +121,15 @@
         align-content: space-between;
         overflow-y: auto;
     }
-    section .body p {
+    section .body .text {
+        display: grid;
+        gap: .25rem;
+    }
+    section .body .text :global(p) {
         text-indent: 1rem;
     }
     section .personalize {
-        margin-top: .5rem;
-        margin-bottom: .25rem;
-        display: flex;
-        gap: 1rem;
-        align-items: center;
+        display: grid;
         align-self: end;
     }
 </style>
