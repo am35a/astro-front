@@ -7,6 +7,7 @@ function f() {
         history: ['horoscope'],
         segment: 'horoscope',
         modal: 'close', // states: close, open or lock
+        modalMotion: false,
         rotate: undefined
     }
 
@@ -16,6 +17,10 @@ function f() {
         subscribe,
         modal: (state) => {
             data.modal = state
+            set(data)
+        },
+        modalMotion: (state) => {
+            data.modalMotion = state
             set(data)
         },
         gesture: ({name = undefined, direction = undefined}) => {

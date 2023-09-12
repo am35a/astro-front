@@ -12,13 +12,13 @@
     export let horoscopeArr = []
 
     function modalLock(event) {
-        if (event.target.scrollTop) {
-            route.modal('lock')
-            console.log($route.modal)
-        } else if ($route.modal !== 'open') {
-            route.modal('open')
-            console.log($route.modal)
-        }
+        // if (event.target.scrollTop) {
+        //     route.modal('lock')
+        //     console.log($route.modal)
+        // } else if ($route.modal !== 'open') {
+        //     route.modal('open')
+        //     console.log($route.modal)
+        // }
     }
 
     function periodToogle (i) {
@@ -68,9 +68,9 @@
         on:scroll={modalLock}
         bind:this={bodyThis}
     >
-        <p>
+        <div class="text">
             {@html horoscopeArr.find(obj => obj.period === periodsArr[period]).text}
-        </p>
+        </div>
 
         {#if !$userObj.isAuthorized}
             <div class="personalize">
@@ -78,6 +78,7 @@
                     on:click={personalize}
                     class="personalize"
                     m=".5rem 0 .25rem 0"
+                    disabled={route.modalMotion}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -120,7 +121,11 @@
         align-content: space-between;
         overflow-y: auto;
     }
-    section .body p {
+    section .body .text {
+        display: grid;
+        gap: .25rem;
+    }
+    section .body .text :global(p) {
         text-indent: 1rem;
     }
     section .personalize {

@@ -8,17 +8,17 @@
     import Stars from './lib/Stars.svelte'
     import Loader from './lib/Loader.svelte'
     import Main from './lib/Main.svelte'
-    import Nav from './lib/Nav.svelte'
+    // import Nav from './lib/Nav.svelte'
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
-    import Horoscope from './lib/modal/Horoscope.svelte'
 
+    import Horoscope from './lib/modal/Horoscope.svelte'
     import Authorization from './lib/modal/Authorization.svelte'
     import Account from './lib/modal/Account.svelte'
 
     async function getHoroscopes() {
-		const res = await fetch('/_api/horoscopes_new.json')
-        // const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
+		// const res = await fetch('/_api/horoscopes_new.json')
+        const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
 		const entObj = await res.json()
 
 		if (res.ok)
@@ -43,7 +43,7 @@
 {:then entObj}
     <Constellation bind:rotateDes />
     <Main>
-        <Nav />
+        <!-- <Nav /> -->
         <Modal>
             {#if $route.segment === "horoscope"}
                 <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
