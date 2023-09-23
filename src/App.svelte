@@ -17,8 +17,8 @@
     import Account from './lib/modal/Account.svelte'
 
     async function getHoroscopes() {
-		// const res = await fetch('/_api/horoscopes_new.json')
-        const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
+		const res = await fetch('/_api/horoscopes_new.json')
+        // const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
 		const entObj = await res.json()
 
 		if (res.ok)

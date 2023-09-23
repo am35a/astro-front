@@ -49,6 +49,10 @@
         // bodyThis.scrollTop = 0
         // console.log('personalize', bodyThis.scrollTop)
     }
+
+    function getTextAndFormat (text) {
+        return `<p>${text.replaceAll(/\n\n/g, '</p><p>')}</p>`
+    }
 </script>
 
 <section>
@@ -69,10 +73,10 @@
         bind:this={bodyThis}
     >
         <div class="text">
-            {@html horoscopeArr.find(obj => obj.period === periodsArr[period]).text}
+            {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[period]).text)}
         </div>
 
-        {#if !$userObj.isAuthorized}
+        <!-- {#if !$userObj.isAuthorized}
             <div class="personalize">
                 <Button
                     on:click={personalize}
@@ -91,7 +95,7 @@
                     Get personal horoscope!
                 </Button>
             </div>
-        {/if}
+        {/if} -->
     </div>
 </section>
 
@@ -123,7 +127,7 @@
     }
     section .body .text {
         display: grid;
-        gap: .25rem;
+        gap: .5rem;
     }
     section .body .text :global(p) {
         text-indent: 1rem;
