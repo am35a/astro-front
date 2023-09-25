@@ -17,8 +17,8 @@
     import Account from './lib/modal/Account.svelte'
 
     async function getHoroscopes() {
-		const res = await fetch('/_api/horoscopes_new.json')
-        // const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
+		// const res = await fetch('/_api/horoscopes_new.json')
+        const res = await fetch('https://astro.selimovdev.net/api/v1/horoscopes')
 		const entObj = await res.json()
 
 		if (res.ok)
@@ -41,20 +41,28 @@
         ... waiting for data
     </Loader>
 {:then entObj}
-    <Constellation bind:rotateDes />
-    <Main>
-        <!-- <Nav /> -->
-        <Modal>
-            {#if $route.segment === "horoscope"}
-                <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
-            {:else if $route.segment === "authorization"}
-                <Authorization />
-            {:else if $route.segment === "account"}
-                <Account />
-            {/if}
-        </Modal>
-    </Main>
-    <!-- <p>The number is {horoscopesObj.date}</p> -->
+    {#if entObj.horoscopes.length === 48}
+        <Constellation bind:rotateDes />
+        <Main>
+            <!-- <Nav /> -->
+            <Modal>
+                {#if $route.segment === "horoscope"}
+                    <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
+                {:else if $route.segment === "authorization"}
+                    <Authorization />
+                {:else if $route.segment === "account"}
+                    <Account />
+                {/if}
+            </Modal>
+        </Main>
+        <!-- <p>The number is {horoscopesObj.date}</p> -->
+    {:else}
+        <Loader class="error">
+            <b>An error occurred</b>
+            <p>We are already working on this error and will try to fix it as quickly as possible.</p>
+            <p>Please try again later.</p>
+        </Loader>
+    {/if}
 {:catch error}
     <Loader class="error">
         {error.message}
