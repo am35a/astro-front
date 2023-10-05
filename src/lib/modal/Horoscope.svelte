@@ -21,7 +21,7 @@
         // }
     }
 
-    function periodToogle (i) {
+    function periodToogle(i) {
         period = i
         bodyThis.scrollTop = 0
     }
@@ -50,7 +50,7 @@
         // console.log('personalize', bodyThis.scrollTop)
     }
 
-    function getTextAndFormat (text) {
+    function getTextAndFormat(text) {
         return `<p>${text.replaceAll(/\n\n/g, '</p><p>')}</p>`
     }
 </script>
