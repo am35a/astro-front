@@ -30,7 +30,7 @@
 
         height: 200vh;
         transform: translateX(calc(-50% + 50vw)) rotate(var(--rotate-deg));
-        transition: all .75s;
+        transition: transform .75s linear;
         will-change: transform;
     }
     img.layer-1 {

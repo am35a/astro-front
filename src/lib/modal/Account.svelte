@@ -2,21 +2,13 @@
     import Accordion from "../components/Accordion.svelte"
     import Details from "../components/Details.svelte"
     import Input from "../components/Input.svelte"
-    import InputBirthday from "../components/InputBirthday.svelte"
+    import Button from "../components/Button.svelte"
 
-    let userDateOBJ = {
-        name: '',
-        birthdayOBJ: {
-            day: undefined,
-            month: undefined,
-            year: undefined
-        },
-        sex: '',
-        time: '',
-        country: ''
-    }
+    // import InputBirthday from "../components/InputBirthday.svelte"
 
-    $: console.log('account ', userDateOBJ)
+    import { personalData } from '../../store/account'
+
+    // let userDateOBJ = {}
 </script>
 
 <section>
@@ -26,22 +18,44 @@
             <Details open>
                 <svelte:fragment slot="summary">Personal data</svelte:fragment>
                 <svelte:fragment slot="body">
-                    <div>
-                        For a more accurate horoscope, give as much information about yourself as possible.
-                    </div>
-                    <Input bind:value={userDateOBJ.name} type="text" placeholder="Name">
-                        <slot slot="label">Name</slot>
+                    <p>For a more accurate horoscope, give as much information about yourself as possible.</p>
+                    <p><b>Fields marked as * are required!</b></p>
+                    <Input
+                        bind:value={$personalData.name}
+                        type="text"
+                        pattern={'[A-Za-z]{1,32}'}
+                        placeholder="only a given name"
+                        required
+                    >
+                        <slot slot="label"><b>*</b> Name</slot>
                     </Input>
-                    <Input bind:value={userDateOBJ.sex} type="text" placeholder="Sex">
-                        <slot slot="label">Sex</slot>
+                    <Input
+                        bind:value={$personalData.sex}
+                        type="text"
+                        datalist={['Man', 'Woman', 'Third']}
+                        placeholder="man, woman or third"
+                        required
+                    >
+                        <slot slot="label"><b>*</b> Sex</slot>
                     </Input>
-                    <InputBirthday bind:birthdayOBJ={userDateOBJ.birthdayOBJ} />
-                    <Input bind:value={userDateOBJ.time} type="time" placeholder="Time">
+                    <!-- <InputBirthday bind:birthdayOBJ={userDateOBJ.birthdayOBJ} /> -->
+                    <Input
+                        bind:value={$personalData.date}
+                        type="date"
+                        pattern={'\\d{4}-\\d{2}-\\d{2}'}
+                        required
+                    >
+                        <slot slot="label"><b>*</b> Birthday</slot>
+                    </Input>
+                    <Input bind:value={$personalData.time} type="time" placeholder="Time">
                         <slot slot="label">Time of birth</slot>
                     </Input>                    
-                    <Input bind:value={userDateOBJ.country} type="text" placeholder="Country">
+                    <Input bind:value={$personalData.birthplace} type="text" placeholder="place you are was born">
                         <slot slot="label">Place of Birth</slot>
                     </Input>
+                    <Button m="1rem 0">
+                        Save
+                    </Button>
                 </svelte:fragment>
             </Details>
         </Accordion>

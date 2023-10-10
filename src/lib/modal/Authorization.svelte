@@ -4,10 +4,11 @@
 
     function signin () {
         $userObj.isAuthorized = true
-        route.modal('close')
+        // route.modal('close')
         // setTimeout(function(){
-        //     route.back()
-        // }, 350);
+            route.goto('account')
+        //     route.modal('open')
+        // }, 350)
     }
 </script>
 

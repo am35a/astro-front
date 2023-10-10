@@ -22,6 +22,8 @@
         color: hsla(0, 90%, 60%, 0.75);
     }
     section {
+        display: grid;
+        gap: 1rem;
         justify-self: center;
         align-self: center;
         padding: .75rem;

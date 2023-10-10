@@ -1,13 +1,19 @@
-<script lang="ts">
+<script>
+    // @ts-nocheck
+
     export let value = ''
+    // export let datalist = undefined
     const UID = self.crypto.randomUUID()
+
+    // $: console.log($$restProps.datalist)
 </script>
 
 <div>
     {#if $$slots.label}
         <label
             for={UID}
-            class="frm-label">
+            class="frm-label"
+        >
             <slot name="label"/>
         </label>
     {/if}
@@ -16,13 +22,21 @@
         class:frm = {true}
         {...$$restProps}
         bind:value
+        list="{UID}_list"
     />
+    {#if $$restProps.datalist}
+        <datalist id="{UID}_list">
+            {#each $$restProps.datalist as item}
+                <option value={item}>
+            {/each}
+        </datalist>
+    {/if}    
 </div>
 
 <style>
     div {
         display: grid;
-        gap: .5rem;
+        gap: .25rem;
     }
     div input {
         width: 100%;
@@ -30,10 +44,17 @@
         border-left: none;
         border-top: none;
         border-right: none;
-        border-bottom: .125rem solid hsla(0, 0%, 100%, 0.75);
         background-color: hsla(0, 0%, 100%, 0);
         /* font-size: 75%; */
-        color: hsla(0, 0%, 100%, 0.75);
+
         text-align: center;
+    }
+    div input:not(:invalid) {
+        color: hsla(0, 0%, 100%, 0.75);
+        border-bottom: .125rem solid hsla(0, 0%, 100%, 0.75);
+    }
+    div input:invalid {
+        color: hsla(0, 75%, 50%, 0.75);
+        border-bottom: .125rem solid hsla(0, 75%, 50%, 0.75);
     }
 </style>

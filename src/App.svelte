@@ -1,16 +1,18 @@
 <script>
-    import { onMount } from 'svelte'
+    // @ts-nocheck
+
+    // import { onMount } from 'svelte'
     import { route } from './store/route'
     import { constellationObj } from './store/app'
 
     import Stars from './lib/Stars.svelte'
     import Loader from './lib/Loader.svelte'
     import Main from './lib/Main.svelte'
-    import Nav from './lib/Nav.svelte'
+    // import Nav from './lib/Nav.svelte'
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
-    import Horoscope from './lib/modal/Horoscope.svelte'
 
+    import Horoscope from './lib/modal/Horoscope.svelte'
     import Authorization from './lib/modal/Authorization.svelte'
     import Account from './lib/modal/Account.svelte'
 
@@ -39,20 +41,28 @@
         ... waiting for data
     </Loader>
 {:then entObj}
-    <Constellation bind:rotateDes />
-    <Main>
-        <Nav />
-        <Modal>
-            {#if $route.segment === "horoscope"}
-                <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
-            {:else if $route.segment === "authorization"}
-                <Authorization />
-            {:else if $route.segment === "account"}
-                <Account />
-            {/if}
-        </Modal>
-    </Main>
-    <!-- <p>The number is {horoscopesObj.date}</p> -->
+    {#if entObj.horoscopes.length === 48}
+        <Constellation bind:rotateDes />
+        <Main>
+            <!-- <Nav /> -->
+            <Modal>
+                {#if $route.segment === "horoscope"}
+                    <Horoscope horoscopeArr={findHoroscopes(entObj.horoscopes, $constellationObj.name)} />
+                {:else if $route.segment === "authorization"}
+                    <Authorization />
+                {:else if $route.segment === "account"}
+                    <Account />
+                {/if}
+            </Modal>
+        </Main>
+        <!-- <p>The number is {horoscopesObj.date}</p> -->
+    {:else}
+        <Loader class="error">
+            <b>An error occurred</b>
+            <p>We are already working on this error and will try to fix it as quickly as possible.</p>
+            <p>Please try again later.</p>
+        </Loader>
+    {/if}
 {:catch error}
     <Loader class="error">
         {error.message}
@@ -80,9 +90,6 @@
         button[disabled] {
             color: hsla(0, 0%, 100%, 0.75);
             background-color: hsla(0, 0%, 100%, 0.25);
-        }
-        button.large {
-
         }
         button.circle {
             padding: .5rem;
