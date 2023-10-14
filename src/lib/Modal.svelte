@@ -33,7 +33,7 @@
 
 {#if $route.modal === 'open' && $route.modal !== 'lock'}
     <article
-        transition:fly={{ y: '90vh', duration: 750, easing: linear }}
+        transition:fly={{ y: '90vh', duration: 325, easing: linear }}
         on:introstart={() => route.modalMotion(false)}
         on:introend={() => route.modalMotion(true)}
         on:outrostart={() => route.modalMotion(false)}
@@ -44,7 +44,7 @@
 {/if}
 {#if $route.modal === 'close' && $route.modal !== 'lock'}
     <svg
-        transition:fly={{ y: '10vh', duration: 750, easing: linear }}
+        transition:fly={{ y: '10vh', duration: 375, easing: linear }}
         width="48" height="48"
         viewBox="0 0 24 24"
         stroke-width="1.5"
