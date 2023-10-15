@@ -108,6 +108,7 @@
     }
     section .title {
         width: 100%;
+        text-indent: .5rem;
         text-align: center;
         text-transform: uppercase;
         letter-spacing: .5em;

@@ -34,10 +34,10 @@
 {#if $route.modal === 'open' && $route.modal !== 'lock'}
     <article
         transition:fly={{ y: '90vh', duration: 325, easing: linear }}
-        on:introstart={() => route.modalMotion(false)}
-        on:introend={() => route.modalMotion(true)}
-        on:outrostart={() => route.modalMotion(false)}
-        on:outroend={() => route.modalMotion(true)}
+        on:introstart={() => route.modalMotion(true)}
+        on:outroend={() => route.modalMotion(false)}
+        on:introend={() => route.modalMotion(false)}
+        on:outrostart={() => route.modalMotion(true)}
     >
         <slot/>
     </article>

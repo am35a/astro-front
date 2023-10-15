@@ -5,6 +5,12 @@
     import { fade } from 'svelte/transition'
     import { route } from '../store/route'
     import { userObj } from '../store/app'
+
+    function appAbout() {
+        route.goto('about')
+        route.modal('open')
+        console.log('nav: appAbout')
+    }
     
     function userAccount() {
         route.goto('account')
@@ -23,14 +29,25 @@
     <nav
         transition:fade
     >
+        <Button
+            on:click={appAbout}
+            class="circle"
+            disabled={$route.modalMotion}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                <path d="M12 9h.01" />
+                <path d="M11 12h1v4h1" />
+            </svg>
+        </Button>
+        <!--
         {#if $userObj.isAuthorized}
             <Button
                 on:click={userAccount}
                 class="circle"
-                disabled={route.modalMotion}
+                disabled={$route.modalMotion}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                 </svg>
@@ -39,10 +56,9 @@
             <Button
                 on:click={userLogin}
                 class="circle"
-                disabled={route.modalMotion}
+                disabled={$route.modalMotion}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3" />
                     <path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6" />
                     <path d="M12 11v2a14 14 0 0 0 2.5 8" />
@@ -51,6 +67,7 @@
                 </svg>
             </Button>
         {/if}
+        -->
     </nav>
 {/if}
 
@@ -59,6 +76,8 @@
         grid-column: 1/-1;
         grid-row: 1/-1;
 
+        display: grid;
+        gap: .75rem;
         justify-self: end;
         align-self: end;
         padding: 1rem;

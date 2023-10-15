@@ -21,6 +21,7 @@ function f() {
         },
         modalMotion: (state) => {
             data.modalMotion = state
+            console.log(data.modalMotion)
             set(data)
         },
         gesture: ({name = undefined, direction = undefined}) => {
@@ -38,6 +39,8 @@ function f() {
                             case 'authorization':
                                 break
                             case 'account':
+                                break
+                            case 'about':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -66,6 +69,8 @@ function f() {
                                 // setTimeout(function(){
                                     route.back()
                                 // }, 350)
+                                break
+                            case 'account':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
@@ -106,6 +111,14 @@ function f() {
                                 }
                                 break
                             case 'account':
+                                if(data.modal === 'open') {
+                                    data.modal = 'close'
+                                    setTimeout(function(){
+                                        route.back()
+                                    }, 350);
+                                }
+                                break
+                            case 'about':
                                 if(data.modal === 'open') {
                                     data.modal = 'close'
                                     setTimeout(function(){
