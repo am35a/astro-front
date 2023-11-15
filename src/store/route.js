@@ -72,6 +72,8 @@ function f() {
                                 break
                             case 'account':
                                 break
+                            case 'about':
+                                break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
@@ -88,6 +90,8 @@ function f() {
                             case 'authorization':
                                 break
                             case 'account':
+                                break
+                            case 'about':
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
