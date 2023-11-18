@@ -12,10 +12,10 @@
     import Constellation from './lib/Constellation.svelte'
     import Modal from './lib/Modal.svelte'
 
-    import Horoscope from './lib/modal/Horoscope.svelte'
-    import Authorization from './lib/modal/Authorization.svelte'
-    import Account from './lib/modal/Account.svelte'
-    import About from './lib/modal/About.svelte'
+    import Horoscope from './lib/modals/Horoscope.svelte'
+    import Authorization from './lib/modals/Authorization.svelte'
+    import Account from './lib/modals/Account.svelte'
+    import About from './lib/modals/About.svelte'
 
     async function getHoroscopes() {
 		// const res = await fetch('/_api/horoscopes_new.json')

@@ -9,7 +9,7 @@
     function appAbout() {
         route.goto('about')
         route.modal('open')
-        console.log('nav: appAbout')
+        // console.log('nav: appAbout')
     }
     
     function userAccount() {

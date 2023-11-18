@@ -70,7 +70,6 @@
             console.log('Tap')
         }
     }
-
 </script>
 
 <!-- on:touchmove={handleTouchMove} -->

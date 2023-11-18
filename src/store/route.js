@@ -17,11 +17,16 @@ function f() {
         subscribe,
         modal: (state) => {
             data.modal = state
-            set(data)
+            // set(data)
+            // console.log(`modal: ${data.modal}`)
         },
         modalMotion: (state) => {
             data.modalMotion = state
-            console.log(data.modalMotion)
+            // set(data)
+            // console.log(`modalMotion: ${data.modalMotion}`)
+        },
+        rotate: (state) => {
+            data.rotate = state
             set(data)
         },
         gesture: ({name = undefined, direction = undefined}) => {
@@ -32,8 +37,8 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                // if(data.modal === 'close') {
-                                    data.rotate = 'left'
+                                // if (data.modal === 'close') {
+                                    route.rotate('left')
                                 // }
                                 break
                             case 'authorization':
@@ -59,8 +64,9 @@ function f() {
                         /*}*/
                         switch (data.segment) {
                             case 'horoscope':
-                                if(data.modal === 'close') {
-                                    data.modal = 'open'
+                                if (data.modal === 'close') {
+                                    route.modal('open')
+                                    set(data)
                                 }
                                 break
                             case 'authorization':
@@ -83,8 +89,8 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                // if(data.modal === 'close') {
-                                    data.rotate = 'right'
+                                // if (data.modal === 'close') {
+                                    route.rotate('right')
                                 // }
                                 break
                             case 'authorization':
@@ -102,12 +108,13 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                if(data.modal === 'open') {
-                                    data.modal = 'close'
+                                if (data.modal === 'open') {
+                                    route.modal('close')
+                                    set(data)
                                 }
                                 break
                             case 'authorization':
-                                if(data.modal === 'open') {
+                                if (data.modal === 'open') {
                                     data.modal = 'close'
                                     setTimeout(function(){
                                         route.back()
@@ -115,7 +122,7 @@ function f() {
                                 }
                                 break
                             case 'account':
-                                if(data.modal === 'open') {
+                                if (data.modal === 'open') {
                                     data.modal = 'close'
                                     setTimeout(function(){
                                         route.back()
@@ -123,11 +130,9 @@ function f() {
                                 }
                                 break
                             case 'about':
-                                if(data.modal === 'open') {
-                                    data.modal = 'close'
-                                    setTimeout(function(){
-                                        route.back()
-                                    }, 350);
+                                if (data.modal === 'open') {
+                                    route.modal('close')
+                                    route.back()
                                 }
                                 break
                             default:
@@ -139,10 +144,10 @@ function f() {
                         console.error(`Sorry, we are route error in name: ${name} > direction: ${direction}!`)
                 }
             }
-            set(data)
+            // set(data)
         },
         goto: (route) => {
-            if(data.history.at(-1) !== route) {
+            if (data.history.at(-1) !== route) {
                 data.history.push(route)
                 data.segment = route
                 set(data)
@@ -150,18 +155,20 @@ function f() {
             // console.log(data.segment)
         },
         back: () => {
-            if(data.history.length > 1) {
+            if (data.history.length > 1) {
                 data.history.pop()
                 data.segment = data.history.at(-1)
-                // if(data.segment === 'about' || data.segment === 'help')
+                // if (data.segment === 'about' || data.segment === 'help')
                 //     route.back()
                 // else
-                    set(data)
+                set(data)
                 // data.isHistory = true
             }
             // else
             //     data.isHistory = false
             // set(data)
+
+            // console.log(`back: ${data.segment}`)
         }
     }
 }

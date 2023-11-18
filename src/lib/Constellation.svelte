@@ -16,9 +16,9 @@
             if ($route.rotate) {
                 $route.rotate === 'left' ? ( $constellationObj.number++, rotateDes++ ) : ( $constellationObj.number--, rotateDes-- )
                     
-                if($constellationObj.number > 11)
+                if ($constellationObj.number > 11)
                 $constellationObj.number = 0
-                else if($constellationObj.number < 0)
+                else if ($constellationObj.number < 0)
                 $constellationObj.number = 11
 
                 $constellationObj.name = $constellationArr[$constellationObj.number].name

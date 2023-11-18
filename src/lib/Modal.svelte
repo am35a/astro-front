@@ -5,32 +5,6 @@
     import { route } from '../store/route'
 </script>
 
-<!-- <script>    
-    import { route } from '../store/route'
-
-    var articleTranslateY = undefined,
-        articleOpacity = undefined,
-        SVGOpacity = undefined,
-        SVGTranslateY = undefined
-
-    $: switch ($route.modal) {
-        case 'open':
-            articleTranslateY = '10vh'
-            articleOpacity = '100%'
-            SVGOpacity = '0%'
-            SVGTranslateY = '100%'
-        break
-        case 'close':
-            articleTranslateY = '90vh'
-            articleOpacity = '0%'
-            SVGOpacity = '100%'
-            SVGTranslateY = '0%'
-        break
-        default:
-            console.log(`The state of modal = ${$route.modal}`)
-    }
-</script -->
-
 {#if $route.modal === 'open' && $route.modal !== 'lock'}
     <article
         transition:fly={{ y: '90vh', duration: 325, easing: linear }}
