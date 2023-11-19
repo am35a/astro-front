@@ -64,7 +64,7 @@ function f() {
                         /*}*/
                         switch (data.segment) {
                             case 'horoscope':
-                                if (data.modal === 'close') {
+                                if (data.modal === 'close' && !data.modalMotion) {
                                     route.modal('open')
                                     set(data)
                                 }
@@ -108,7 +108,7 @@ function f() {
 
                         switch (data.segment) {
                             case 'horoscope':
-                                if (data.modal === 'open') {
+                                if (data.modal === 'open' && !data.modalMotion) {
                                     route.modal('close')
                                     set(data)
                                 }
