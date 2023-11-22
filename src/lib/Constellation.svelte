@@ -72,7 +72,7 @@
         grid-column: 1/-1;
         grid-row: 1/-1;
         transform: translateX(calc(-50% + 50vw)) translateY(var(--translate-y)) rotate(var(--rotate-deg));
-        transition: all .375s linear;
+        transition: transform .375s linear;
         will-change: transform;
     }
     .constellation .zodiac {
