@@ -3,6 +3,7 @@
     
     import Button from './components/Button.svelte'
     import { fade } from 'svelte/transition'
+    import { linear } from 'svelte/easing'
     import { route } from '../store/route'
     import { userObj } from '../store/app'
 
@@ -27,7 +28,7 @@
 
 {#if $route.modal === 'close'}
     <nav
-        transition:fade
+        transition:fade = {{ duration: 375, easing: linear }}
     >
         <Button
             on:click={appAbout}

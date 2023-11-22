@@ -1,14 +1,13 @@
 <script>
     // @ts-nocheck
     import { fly } from 'svelte/transition'
-    import { slide } from 'svelte/transition'
     import { linear } from 'svelte/easing'
     import { route } from '../store/route'
 </script>
 
 {#if $route.modal === 'open' && $route.modal !== 'lock'}
     <article
-        transition:fly={{ y: '90vh', duration: 325, easing: linear, opacity: .1 }}
+        transition:fly={{ y: '90vh', duration: 375, easing: linear }}
         on:introstart={() => route.modalMotion(true)}
         on:outroend={() => route.modalMotion(false)}
         on:introend={() => route.modalMotion(false)}
