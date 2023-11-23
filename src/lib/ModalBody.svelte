@@ -34,6 +34,7 @@
         text-align: center;
     }
     .body :global(p) {
+        margin-bottom: .5rem;
         text-indent: 1rem;
     }
 </style>

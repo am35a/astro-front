@@ -27,32 +27,38 @@
                 Astro AI - &copy; 2022 - {(new Date()).getFullYear()}
             </div>
         </div>
+        <Details open>
+            <svelte:fragment slot="summary">Aplication information</svelte:fragment>
+            <svelte:fragment slot="body">
+                <p>Astro AI is an advanced application for astrological forecasts using advanced technologies in the field of artificial intelligence to identify inaccuracies and errors that a person may make in making forecasts for our users.</p>
+            </svelte:fragment>
+        </Details>
         <Details>
             <svelte:fragment slot="summary">Terms and Conditions</svelte:fragment>
             <svelte:fragment slot="body">
                 <small>
-                    <p><b>1. Acceptance of Terms</b></p>
-                    <p>By using the AstroApp application provided by Selimov Development company, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the application.</p>
-                    <p><b>2. Application Usage</b></p>
-                    <p>AstroApp is provided for informational and entertainment purposes only.</p>
+                    <p><b>Acceptance of Terms</b></p>
+                    <p>By using the Astro AI application provided by Selimov Development company, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the application.</p>
+                    <p><b>Application Usage</b></p>
+                    <p>Astro AI is provided for informational and entertainment purposes only.</p>
                     <p>You must be at least 18 years old or have parental consent to use the application.</p>
-                    <p><b>3. User Information and Cookies</b></p>
-                    <p>Selimov Development company does not collect or store any user information.</p>
-                    <p>AstroApp does not use or save cookies.</p>
-                    <p><b>4. Intellectual Property</b></p>
-                    <p>All content and materials within the application, including but not limited to text, images, and software, are the property of Selimov Development company and are protected by copyright and other intellectual property laws.</p>
-                    <p><b>5. Third-Party Links</b></p>
+                    <p><b>User Information and Cookies</b></p>
+                    <p>Selimov Development company does not collect or store any user information on its servers.</p>
+                    <p>Astro AI does not use or save cookies.</p>
+                    <p><b>AI Usage</b></p>
+                    <p>All content provided to the user, in order to avoid astrological inaccuracies, is checked by artificial intelligence to identify errors and to obtain more accurate forecasts.</p>
+                    <p><b>Third-Party Links</b></p>
                     <p>The application may contain links to third-party websites. Selimov Development company is not responsible for the content or actions of these third-party sites.</p>
-                    <p><b>6. Changes to Terms</b></p>
+                    <p><b>Changes to Terms</b></p>
                     <p>Selimov Development company reserves the right to modify or update these Terms and Conditions at any time. It is your responsibility to review these terms periodically.</p>
-                    <p><b>7. Limitation of Liability</b></p>
-                    <p>Selimov Development company is not liable for any damages or losses resulting from the use of the AstroApp application.</p>
+                    <p><b>Limitation of Liability</b></p>
+                    <p>Selimov Development company is not liable for any damages or losses resulting from the use of the Astro AI application.</p>
                     <p>We do not guarantee the accuracy or availability of the content provided.</p>
-                    <p><b>8. Termination</b></p>
+                    <p><b>Termination</b></p>
                     <p>Selimov Development company may terminate or suspend your access to the application at any time for any reason.</p>
-                    <p><b>9. Contact Information</b></p>
+                    <p><b>Contact Information</b></p>
                     <p>If you have any questions or concerns regarding these Terms and Conditions, you may contact Selimov Development company at am35a.piston@gmail.com.</p>
-                    <p>By using AstroApp, you acknowledge and agree to these Terms and Conditions. Please discontinue use of the application if you do not agree with any part of these terms.</p>
+                    <p>By using Astro AI, you acknowledge and agree to these Terms and Conditions. Please discontinue use of the application if you do not agree with any part of these terms.</p>
                 </small>
             </svelte:fragment>
         </Details>
