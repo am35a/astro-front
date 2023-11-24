@@ -118,7 +118,11 @@
         display: grid;
         grid-auto-flow: column;
         gap: .5rem;
-        overflow: scroll;
+        overflow: auto;
+        scrollbar-width: none
+    }
+    section .button-group::-webkit-scrollbar {
+        display: none
     }
     section .body {
         display: grid;
