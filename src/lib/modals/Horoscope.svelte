@@ -72,10 +72,29 @@
         on:scroll={modalLock}
         bind:this={bodyThis}
     >
-        <div class="text">
-            {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[period]).text)}
-        </div>
+        {#each Array(periodsArr.length) as _, i}
+            <div
+                class="text"
+                style:--translate-x={`calc(${-100 * period}% - ${.5 * period}rem)`}
+            >
+                {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[i]).text)}
+            </div>
+        {/each}
+        <!-- {#each Array(periodsArr.length) as _, i}
+            {#if period === i}
+                <div
+                    transition:fly={{ x: `${100 * periodDirection}vw`, duration: 375, easing: linear }}
+                    class="text"
+                >
+                    {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[i]).text)}
+                </div>
+            {/if}
+        {/each} -->
 
+        <!-- <div class="text">
+            {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[period]).text)}
+        </div> -->
+        
         <!-- {#if !$userObj.isAuthorized}
             <div class="personalize">
                 <Button
@@ -126,13 +145,21 @@
     }
     section .body {
         display: grid;
-        gap: .25rem;
+        gap: .5rem; /* added to --translate-x for .text in .body*/
         align-content: space-between;
+        overflow-x: hidden;
         overflow-y: auto;
+        grid-template-columns: repeat(4, 100%);
     }
     section .body .text {
+        /* grid-row: 1/-1;
+        grid-column: 1/-1; */
         display: grid;
         gap: .5rem;
+        align-content: start;
+        transform: translateX(var(--translate-x));
+        transition: transform .375s linear;
+        will-change: transform;
     }
     section .body .text :global(p) {
         text-indent: 1rem;
