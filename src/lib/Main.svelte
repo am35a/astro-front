@@ -27,10 +27,10 @@
     function handleTouchEnd (event) {
         touchendX = ~~event.changedTouches[0].clientX
         touchendY = ~~event.changedTouches[0].clientY
-        handleGesture ()
+        handleGesture()
     }
 
-    function handleGesture () {
+    function handleGesture() {
         gestureObj={...undefined} // reset gestures for each handle call
 
         diffX = Math.abs(touchstartX - touchendX)

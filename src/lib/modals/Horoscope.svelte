@@ -26,16 +26,18 @@
         bodyThis.scrollTop = 0
     }
 
-    // $: switch ($route.rotate) {
-    //     case 'right':
-    //         if (period)
-    //             periodToogle(period - 1)
-    //     break
-    //     case 'left':
-    //         if (period < periodsArr.length - 1)
-    //             periodToogle(period + 1)
-    //     break
-    // }
+    $: switch ($route.rotate) {
+        case 'right':
+            if (period)
+                periodToogle(period - 1)
+        break
+        case 'left':
+            if (period < periodsArr.length - 1)
+                periodToogle(period + 1)
+        break
+        // default:
+        //     console.warn(`Horoscope rotation not valid value: ${$route.rotate} !`)
+    }
 
     // $: console.log('horoscope: ', periodsArr[period])
 
