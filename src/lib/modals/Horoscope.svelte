@@ -26,18 +26,15 @@
         bodyThis.scrollTop = 0
     }
 
-    $: switch ($route.rotate) {
-        case 'right':
-            if (period)
-                periodToogle(period - 1)
-        break
-        case 'left':
-            if (period < periodsArr.length - 1)
+    function periodSwipe(direction) {
+        if (direction ==='right' && period)
+            periodToogle(period - 1)
+        else
+            if (direction ==='left' && period < periodsArr.length - 1)
                 periodToogle(period + 1)
-        break
-        // default:
-        //     console.warn(`Horoscope rotation not valid value: ${$route.rotate} !`)
     }
+
+    $: periodSwipe($route.rotate)
 
     // $: console.log('horoscope: ', periodsArr[period])
 
@@ -55,6 +52,10 @@
     function getTextAndFormat(text) {
         return `<p>${text.replaceAll(/\n\n/g, '</p><p>')}</p>`
     }
+
+
+    // $: console.info(period)
+
 </script>
 
 <section>
@@ -64,7 +65,7 @@
             <Button
                 on:click={() => periodToogle(i)}
                 disabled={period === i}
-                class="${i}"
+                class="{i}"
             >{item}</Button>
         {/each}
     </div>
@@ -76,7 +77,7 @@
     >
         {#each Array(periodsArr.length) as _, i}
             <div
-                class="text"
+                class="text {i}"
                 style:--translate-x={`calc(${-100 * period}% - ${.5 * period}rem)`}
             >
                 {@html getTextAndFormat(horoscopeArr.find(obj => obj.period === periodsArr[i]).text)}
