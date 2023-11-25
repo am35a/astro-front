@@ -1,8 +1,10 @@
 <script>
     // @ts-nocheck
-    import Button from '../components/Button.svelte'
     import { userObj } from '../../store/app'
     import { route } from '../../store/route'
+
+    import Button from '../components/Button.svelte'
+    import ModalBody from "../ModalBody.svelte"
 
     let periodsArr = ['Daily', 'Weekly', 'Monthly', 'Yearly']
     let period = 0
@@ -70,7 +72,7 @@
         {/each}
     </div>
 
-    <div
+    <ModalBody
         class="body"
         on:scroll={modalLock}
         bind:this={bodyThis}
@@ -118,7 +120,7 @@
                 </Button>
             </div>
         {/if} -->
-    </div>
+    </ModalBody>
 </section>
 
 <style>
@@ -146,7 +148,7 @@
     section .button-group::-webkit-scrollbar {
         display: none
     }
-    section .body {
+    section :global(.body) {
         display: grid;
         gap: .5rem; /* added to --translate-x for .text in .body*/
         align-content: space-between;
@@ -154,7 +156,7 @@
         overflow-y: auto;
         grid-template-columns: repeat(4, 100%);
     }
-    section .body .text {
+    section :global(.body .text) {
         /* grid-row: 1/-1;
         grid-column: 1/-1; */
         display: grid;
@@ -164,7 +166,7 @@
         transition: transform .375s linear;
         will-change: transform;
     }
-    section .body .text :global(p) {
+    section :global(.body .text p) {
         text-indent: 1rem;
     }
     section .personalize {

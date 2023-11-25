@@ -80,4 +80,18 @@
         text-transform: uppercase;
         letter-spacing: .5em;
     }
+
+    section :global(.body) {
+        display: grid;
+        gap: 1.25rem;
+        align-content: start;
+        overflow-y: auto;
+    }
+    section :global(.body .copy) {
+        text-align: center;
+    }
+    section :global(.body p) {
+        margin-bottom: .5rem;
+        text-indent: 1rem;
+    }
 </style>

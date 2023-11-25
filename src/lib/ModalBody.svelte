@@ -24,7 +24,7 @@
 </div>
 
 <style>
-    .body {
+    /* .body {
         display: grid;
         gap: 1.25rem;
         align-content: start;
@@ -36,5 +36,5 @@
     .body :global(p) {
         margin-bottom: .5rem;
         text-indent: 1rem;
-    }
+    } */
 </style>
