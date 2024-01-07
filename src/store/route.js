@@ -27,8 +27,6 @@ function f() {
                 setTimeout(function() {
                     route.back()
                 }, 375)
-            // set(data)
-            // console.log(`modal: ${data.modal}`)
         },
         modalMotion: (state) => {
             data.modalMotion = state
@@ -63,15 +61,6 @@ function f() {
 
                         break
                     case 'up':
-                        /*{
-                            restarting the segment:
-                            return after opening the authorization window to the segment of horoscopes
-                        */
-                        // if (data.segment === 'authorization' || data.segment === 'account') {
-                        //     data.rotate = undefined
-                        //     route.back()
-                        // }
-                        /*}*/
                         switch (data.segment) {
                             case 'horoscope':
                                 if (data.modal === 'close' && !data.modalMotion) {
@@ -93,10 +82,8 @@ function f() {
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
-
                         break
                     case 'right':
-
                         switch (data.segment) {
                             case 'horoscope':
                                 // if (data.modal === 'close') {
@@ -112,15 +99,13 @@ function f() {
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
-
                         break
                     case 'down':
                         switch (data.segment) {
                             case 'horoscope':
                                 if (data.modal === 'open' && !data.modalMotion) {
                                     route.modal('close')
-                                    // set(data)
-                                    console.log(`${direction} > ${data.segment}`)
+                                    // console.log(`${direction} > ${data.segment}`)
                                 }
                                 break
                             case 'authorization':
@@ -132,31 +117,19 @@ function f() {
                                 // }
                                 break
                             case 'account':
-                                // if (data.modal === 'open') {
-                                //     data.modal = 'close'
-                                //     setTimeout(function(){
-                                //         route.back()
-                                //     }, 350);
-                                // }
                                 break
                             case 'about':
-                                // console.log(`${direction} > ${data.segment}`, data.modalMotion)
-                                if (data.modal === 'open' && !data.modalMotion) {
+                                if (data.modal === 'open' && !data.modalMotion)
                                     route.modal('close')
-                                    // route.back()
-                                    // console.log(`${direction} > ${data.segment}`, data.modalMotion)
-                                }
                                 break
                             default:
                                 console.error(`Sorry, we are route error in name: ${name} > direction: ${direction} > segment ${data.segment}!`)
                         }
-
                         break
                     default:
                         console.error(`Sorry, we are route error in name: ${name} > direction: ${direction}!`)
                 }
             }
-            // set(data)
         },
         goto: (route) => {
             if (data.history.at(-1) !== route) {
@@ -164,23 +137,13 @@ function f() {
                 data.segment = route
                 set(data)
             }
-            // console.log(data.segment)
         },
         back: () => {
             if (data.history.length > 1) {
                 data.history.pop()
                 data.segment = data.history.at(-1)
-                // if (data.segment === 'about' || data.segment === 'help')
-                //     route.back()
-                // else
                 set(data)
-                // data.isHistory = true
             }
-            // else
-            //     data.isHistory = false
-            // set(data)
-
-            // console.log(`back: ${data.segment}`)
         }
     }
 }
