@@ -1,24 +1,53 @@
 <script>
     // @ts-nocheck
-    import { fly } from 'svelte/transition'
-    import { linear } from 'svelte/easing'
+    // import { fly } from 'svelte/transition'
+    // import { linear } from 'svelte/easing'
     import { route } from '../store/route'
+
+    var articleTranslateY = undefined,
+        articleOpacity = undefined,
+        SVGOpacity = undefined,
+        SVGTranslateY = undefined
+    
+    $: switch ($route.modal) {
+        case 'open':
+            // route.modalMotion(true)
+            articleTranslateY = '10vh'
+            articleOpacity = '100%'
+            SVGOpacity = '0%'
+            SVGTranslateY = '100%'
+            // setTimeout(function() {
+            //     route.modalMotion(false)
+            // }, 375)
+        break
+        case 'close':
+            // route.modalMotion(true)
+            articleTranslateY = '90vh'
+            articleOpacity = '0%'
+            SVGOpacity = '100%'
+            SVGTranslateY = '0%'
+            // setTimeout(function() {
+            //     route.modalMotion(false)
+            // }, 375)
+        break
+        default:
+            console.log(`The state of modal = ${$route.modal}`)
+    }
 </script>
 
-{#if $route.modal === 'open' && $route.modal !== 'lock'}
+<!-- {#if $route.modal === 'open' && $route.modal !== 'lock'} -->
     <article
-        transition:fly={{ y: '90vh', duration: 375, easing: linear }}
-        on:introstart={() => route.modalMotion(true)}
-        on:outroend={() => route.modalMotion(false)}
-        on:introend={() => route.modalMotion(false)}
-        on:outrostart={() => route.modalMotion(true)}
+        style:--translate-y={articleTranslateY}
+        style:--opacity={articleOpacity}
     >
         <slot/>
     </article>
-{/if}
-{#if $route.modal === 'close' && $route.modal !== 'lock'}
+<!-- {/if}
+{#if $route.modal === 'close' && $route.modal !== 'lock'} -->
     <svg
-        transition:fly={{ y: '10vh', duration: 375, easing: linear }}
+        style:--opacity={SVGOpacity}
+        style:--translate-y={SVGTranslateY}
+
         width="48" height="48"
         viewBox="0 0 24 24"
         stroke-width="1.5"
@@ -30,7 +59,7 @@
     >
         <polyline points="6 15 12 9 18 15" />
     </svg>
-{/if}
+<!-- {/if} -->
 
 <style>
     article {
@@ -42,8 +71,11 @@
         background-image: linear-gradient(0deg, hsla(0, 0%, 0%, .75), transparent);
         color: hsla(0, 0%, 100%, .5);
         font-size: 1.25rem;
-        transform: translateY(10vh);
         hyphens: auto;
+
+        transform: translateY(var(--translate-y));
+        opacity: var(--opacity);
+        transition: all .375s linear;
     }
     svg {
         grid-column: 1/-1;
@@ -55,5 +87,9 @@
         justify-self: center;
         align-self: end;
         color: hsla(0, 0%, 100%, 0.5);
+
+        transform: translateY(var(--translate-y));
+        opacity: var(--opacity);
+        transition: all .375s linear;
     }
 </style>

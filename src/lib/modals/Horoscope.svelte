@@ -29,11 +29,12 @@
     }
 
     function periodSwipe(direction) {
-        if (direction ==='right' && period)
-            periodToogle(period - 1)
-        else
-            if (direction ==='left' && period < periodsArr.length - 1)
-                periodToogle(period + 1)
+        if ($route.modal !== 'close')
+            if (direction ==='right' && period)
+                periodToogle(period - 1)
+            else
+                if (direction ==='left' && period < periodsArr.length - 1)
+                    periodToogle(period + 1)
     }
 
     $: periodSwipe($route.rotate)

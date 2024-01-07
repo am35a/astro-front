@@ -22,6 +22,7 @@
         padding: .5rem 1.25rem;
         border-radius: 4rem;
         font-size: 75%;
+        line-height: 2rem;
         white-space: nowrap;
         text-transform: uppercase;
         letter-spacing: .125em;

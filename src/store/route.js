@@ -16,14 +16,24 @@ function f() {
     return {
         subscribe,
         modal: (state) => {
-            data.modal = state
+            if (data.modal !== state) {
+                route.modalMotion(true)
+                data.modal = state
+                setTimeout(function() {
+                    route.modalMotion(false)
+                }, 375)                
+            }
+            if (data.modal === 'close')
+                setTimeout(function() {
+                    route.back()
+                }, 375)
             // set(data)
             // console.log(`modal: ${data.modal}`)
         },
         modalMotion: (state) => {
             data.modalMotion = state
-            // set(data)
-            // console.log(`modalMotion: ${data.modalMotion}`)
+            set(data)
+            console.log(`modalMotion: ${data.modalMotion}`)
         },
         rotate: (state) => {
             data.rotate = state
@@ -66,7 +76,7 @@ function f() {
                             case 'horoscope':
                                 if (data.modal === 'close' && !data.modalMotion) {
                                     route.modal('open')
-                                    set(data)
+                                    // set(data)
                                 }
                                 break
                             case 'authorization':
@@ -105,34 +115,36 @@ function f() {
 
                         break
                     case 'down':
-
                         switch (data.segment) {
                             case 'horoscope':
                                 if (data.modal === 'open' && !data.modalMotion) {
                                     route.modal('close')
-                                    set(data)
+                                    // set(data)
+                                    console.log(`${direction} > ${data.segment}`)
                                 }
                                 break
                             case 'authorization':
-                                if (data.modal === 'open') {
-                                    data.modal = 'close'
-                                    setTimeout(function(){
-                                        route.back()
-                                    }, 350);
-                                }
+                                // if (data.modal === 'open') {
+                                //     data.modal = 'close'
+                                //     setTimeout(function(){
+                                //         route.back()
+                                //     }, 350);
+                                // }
                                 break
                             case 'account':
-                                if (data.modal === 'open') {
-                                    data.modal = 'close'
-                                    setTimeout(function(){
-                                        route.back()
-                                    }, 350);
-                                }
+                                // if (data.modal === 'open') {
+                                //     data.modal = 'close'
+                                //     setTimeout(function(){
+                                //         route.back()
+                                //     }, 350);
+                                // }
                                 break
                             case 'about':
-                                if (data.modal === 'open') {
+                                // console.log(`${direction} > ${data.segment}`, data.modalMotion)
+                                if (data.modal === 'open' && !data.modalMotion) {
                                     route.modal('close')
-                                    route.back()
+                                    // route.back()
+                                    // console.log(`${direction} > ${data.segment}`, data.modalMotion)
                                 }
                                 break
                             default:

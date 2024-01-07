@@ -104,9 +104,8 @@ function constellation() {
         theDate = new Date(),
         day = theDate.getDate(),
         month = theDate.getMonth(),
-        number = day < get(constellationArr)[month].day ? month - 1 : month,
-        name = get(constellationArr)[number].name
-	
+        number = day < get(constellationArr)[month].day ? (month < 1 ? 11 : month - 1) : month,
+        name = get(constellationArr)[number].name	
     return {number, name}
 }
 export let constellationObj = writable(constellation())
