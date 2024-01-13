@@ -22,19 +22,3 @@
 >
     <slot></slot>
 </div>
-
-<style>
-    /* .body {
-        display: grid;
-        gap: 1.25rem;
-        align-content: start;
-        overflow-y: auto;
-    }
-    .body :global(.copy) {
-        text-align: center;
-    }
-    .body :global(p) {
-        margin-bottom: .5rem;
-        text-indent: 1rem;
-    } */
-</style>

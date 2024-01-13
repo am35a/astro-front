@@ -11,24 +11,16 @@
     
     $: switch ($route.modal) {
         case 'open':
-            // route.modalMotion(true)
             articleTranslateY = '10vh'
             articleOpacity = '100%'
             SVGOpacity = '0%'
             SVGTranslateY = '100%'
-            // setTimeout(function() {
-            //     route.modalMotion(false)
-            // }, 375)
         break
         case 'close':
-            // route.modalMotion(true)
             articleTranslateY = '90vh'
             articleOpacity = '0%'
             SVGOpacity = '100%'
             SVGTranslateY = '0%'
-            // setTimeout(function() {
-            //     route.modalMotion(false)
-            // }, 375)
         break
         default:
             console.log(`The state of modal = ${$route.modal}`)
@@ -75,7 +67,8 @@
 
         transform: translateY(var(--translate-y));
         opacity: var(--opacity);
-        transition: all .375s linear;
+        transition: opacity .375s linear, transform .375s linear;
+        will-change: opacity, transform;
     }
     svg {
         grid-column: 1/-1;
@@ -90,6 +83,7 @@
 
         transform: translateY(var(--translate-y));
         opacity: var(--opacity);
-        transition: all .375s linear;
+        transition: opacity .375s linear, transform .375s linear;
+        will-change: opacity, transform;
     }
 </style>

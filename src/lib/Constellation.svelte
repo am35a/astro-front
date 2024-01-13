@@ -60,12 +60,7 @@
         grid-column: 1/-1;
         grid-row: 1/-1;
 
-        position: inherit;
-        width: inherit;
-        height: inherit;
-        display: inherit;
-        grid-template: inherit;
-        overflow: inherit;
+        display: contents;
     }
     .constellation .zodiac,
     .constellation .description {
@@ -73,7 +68,7 @@
         grid-row: 1/-1;
         transform: translateX(calc(-50% + 50vw)) translateY(var(--translate-y)) rotate(var(--rotate-deg));
         transition: opacity .375s linear, transform .375s linear;
-        will-change: transform;
+        will-change: opacity, transform;
     }
     .constellation .zodiac {
         margin-top: 5vh;

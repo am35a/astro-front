@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import { userObj } from '../../store/app'
+    // import { userObj } from '../../store/app'
     import { route } from '../../store/route'
 
     import Button from '../components/Button.svelte'

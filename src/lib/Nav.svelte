@@ -5,7 +5,7 @@
     import { fade } from 'svelte/transition'
     import { linear } from 'svelte/easing'
     import { route } from '../store/route'
-    import { userObj } from '../store/app'
+    // import { userObj } from '../store/app'
 
     function appAbout() {
         route.goto('about')
