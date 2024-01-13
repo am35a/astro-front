@@ -1,6 +1,6 @@
 <script>
     import { route } from '../store/route'
-    import skyPattern from '/img/sky-pattern.svg'
+    import skyPattern from '/img/sky-pattern.png'
 
     export let rotateDes = 0
 
