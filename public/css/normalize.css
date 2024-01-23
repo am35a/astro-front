@@ -1,6 +1,6 @@
 html {
     position: relative;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     overflow: hidden;
     box-sizing: border-box;
@@ -30,7 +30,7 @@ body {
     display: grid;
     grid-template: 1fr/1fr;
     overflow: hidden;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     margin: 0;
     background: linear-gradient(0deg, hsl(240, 70%, 20%) 35%, transparent 100%);
