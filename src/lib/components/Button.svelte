@@ -25,12 +25,12 @@
         justify-content: center;
         align-items: center;
         border: none;
-        background-color: transparent;
         border-radius: 4rem;
-        font-size: 75%;
+        font-size: 85%;
         white-space: nowrap;
         text-transform: uppercase;
         letter-spacing: .125em;
+        line-height: 1.5rem;
         backdrop-filter: saturate(2) blur(.125rem);
     }
     button.circle {

@@ -14,15 +14,17 @@
 
 <style>
     details summary {
+        --p: .5rem 1.25rem;
+
         display: grid;
         grid-template-columns: 1fr max-content;
         align-items: center;
         border: none;
         background-color: transparent;
-        padding: .5rem 1.25rem;
+        padding: var(--p);
         border-radius: 4rem;
-        font-size: 75%;
-        line-height: 2rem;
+        font-size: 85%;
+        line-height: 1.5rem;
         white-space: nowrap;
         text-transform: uppercase;
         letter-spacing: .125em;
