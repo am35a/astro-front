@@ -1,6 +1,9 @@
 <script>
+    import packageJSON from '../../../package.json'
+
     import Details from "../components/Details.svelte"
     import ModalBody from "../ModalBody.svelte"
+
     // https://app.termly.io/builder/documents/new?template_id=9
 </script>
 
@@ -20,12 +23,8 @@
                 <path transform="translate(30,30)" d="m43 26c3.6873 6.8916-10.027 26.688-30 16 24.623-7.6522 28.122-19.135 30-16z" fill="#888" fill-rule="evenodd"/>
                 <path transform="translate(30,30)" d="m24 3c-11.598 0-21 10.152-21 21 0.11238 6.2025 2.1028 11.636 5.9824 13.91-3.6094 0.8614-6.2983 0.64126-7.375-0.89648-0.5189-0.741-0.62469-1.7281-0.36719-2.8984-1.2526 2.721-1.4564 5.0273-0.36914 6.5801 3.1678 4.524 16.091 0.94038 28.865-8.0039s20.56-19.863 17.393-24.387c-1.1028-1.5749-3.3883-2.1668-6.4375-1.8926 1.2352 0.14733 2.1608 0.58895 2.6934 1.3496 1.6867 2.4088-0.9982 7.4164-6.373 12.877 4.8562-10.108-2.545-17.639-13.012-17.639z" fill="#999"/>
             </svg>
-            <div>
-                Astro AI - 2022 / {(new Date()).getFullYear()}
-            </div>
-            <div>
-                &copy; Selimov Development
-            </div>
+            <div>Astro AI - ver.{packageJSON.version}</div>
+            <small>Copyright 2023-{(new Date()).getFullYear()}<br>by Selimov Development</small>
         </div>
         <Details open>
             <svelte:fragment slot="summary">Aplication information</svelte:fragment>
