@@ -86,6 +86,7 @@
         display: grid;
         gap: 1.25rem;
         align-content: start;
+        overflow-x: hidden;
         overflow-y: auto;
     }
     section :global(.body .copy) {

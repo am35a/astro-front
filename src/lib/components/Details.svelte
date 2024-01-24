@@ -13,11 +13,15 @@
 </details>
 
 <style>
+    details {
+        max-width: 100%;
+    }
     details summary {
         --p: .5rem 1.25rem;
 
         display: grid;
         grid-template-columns: 1fr max-content;
+        grid-gap: 1rem;
         align-items: center;
         border: none;
         background-color: transparent;
@@ -29,6 +33,11 @@
         text-transform: uppercase;
         letter-spacing: .125em;
         backdrop-filter: saturate(2) blur(.125rem);
+    }
+    details summary div {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     details:not([open]) summary {
         color: hsla(0, 0%, 100%, 0.5);
