@@ -23,14 +23,14 @@
                 <path transform="translate(30,30)" d="m43 26c3.6873 6.8916-10.027 26.688-30 16 24.623-7.6522 28.122-19.135 30-16z" fill="#888" fill-rule="evenodd"/>
                 <path transform="translate(30,30)" d="m24 3c-11.598 0-21 10.152-21 21 0.11238 6.2025 2.1028 11.636 5.9824 13.91-3.6094 0.8614-6.2983 0.64126-7.375-0.89648-0.5189-0.741-0.62469-1.7281-0.36719-2.8984-1.2526 2.721-1.4564 5.0273-0.36914 6.5801 3.1678 4.524 16.091 0.94038 28.865-8.0039s20.56-19.863 17.393-24.387c-1.1028-1.5749-3.3883-2.1668-6.4375-1.8926 1.2352 0.14733 2.1608 0.58895 2.6934 1.3496 1.6867 2.4088-0.9982 7.4164-6.373 12.877 4.8562-10.108-2.545-17.639-13.012-17.639z" fill="#999"/>
             </svg>
-            <div>Astro AI - ver.{packageJSON.version}</div>
-            <small>Copyright 2023-{(new Date()).getFullYear()}<br>by Selimov Development</small>
+            <div>Astro AI-Horoscope</div>
+            <small>ver.{packageJSON.version} &nbsp; &copy; 2023-{(new Date()).getFullYear()} <br>by Selimov Development</small>
         </div>
         <Details open>
             <svelte:fragment slot="summary">Aplication information</svelte:fragment>
             <svelte:fragment slot="body">
                 <small>
-                    <p>Astro AI is an advanced application for astrological forecasts using advanced technologies in the field of artificial intelligence to identify inaccuracies and errors that a person may make in making forecasts for our users.</p>
+                    <p>"Astro AI - Horoscope" is an advanced application for astrological forecasts using advanced technologies in the field of artificial intelligence to identify inaccuracies and errors that a person may make in making forecasts for our users.</p>
                 </small>
             </svelte:fragment>
         </Details>
@@ -39,13 +39,13 @@
             <svelte:fragment slot="body">
                 <small>
                     <p><b>Acceptance of Terms</b></p>
-                    <p>By using the Astro AI application provided by Selimov Development company, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the application.</p>
+                    <p>By using the "Astro AI - Horoscope" application provided by Selimov Development company, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the application.</p>
                     <p><b>Application Usage</b></p>
-                    <p>Astro AI is provided for informational and entertainment purposes only.</p>
+                    <p>"Astro AI - Horoscope" is provided for informational and entertainment purposes only.</p>
                     <p>You must be at least 18 years old or have parental consent to use the application.</p>
                     <p><b>User Information and Cookies</b></p>
                     <p>Selimov Development company does not collect or store any user information on its servers.</p>
-                    <p>Astro AI does not use or save cookies.</p>
+                    <p>"Astro AI - Horoscope" does not use or save cookies.</p>
                     <p><b>AI Usage</b></p>
                     <p>All content provided to the user, in order to avoid astrological inaccuracies, is checked by artificial intelligence to identify errors and to obtain more accurate forecasts.</p>
                     <p><b>Third-Party Links</b></p>
@@ -53,7 +53,7 @@
                     <p><b>Changes to Terms</b></p>
                     <p>Selimov Development company reserves the right to modify or update these Terms and Conditions at any time. It is your responsibility to review these terms periodically.</p>
                     <p><b>Limitation of Liability</b></p>
-                    <p>Selimov Development company is not liable for any damages or losses resulting from the use of the Astro AI application.</p>
+                    <p>Selimov Development company is not liable for any damages or losses resulting from the use of the "Astro AI - Horoscope" application.</p>
                     <p>We do not guarantee the accuracy or availability of the content provided.</p>
                     <p><b>Termination</b></p>
                     <p>Selimov Development company may terminate or suspend your access to the application at any time for any reason.</p>

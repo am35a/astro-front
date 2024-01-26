@@ -22,8 +22,8 @@
             SVGOpacity = '100%'
             SVGTranslateY = '0%'
         break
-        default:
-            console.log(`The state of modal = ${$route.modal}`)
+        // default:
+        //     console.log(`The default state of modal in Modal = ${$route.modal}`)
     }
 </script>
 

@@ -1,4 +1,6 @@
 <script>
+    // @ts-nocheck
+
     import { route } from '../store/route'
     import { constellationObj, constellationArr } from '../store/app'
 
@@ -24,6 +26,8 @@
                 $constellationObj.name = $constellationArr[$constellationObj.number].name
             }
         break
+        // default:
+        //     console.log(`The default state of modal in Constellation = ${$route.modal}`)
     }
 
     // $: rotateDes = $constellationObj.number
@@ -43,7 +47,7 @@
             class="description"
             style:--rotate-deg={`${(i - rotateDes) * 30}deg`}
             style:--translate-y={translateY}
-            style:opacity={i !== $constellationObj.number ? 0 : 1}
+            style:opacity={i !== $constellationObj.number ? 0 : $route.history.at(-1) === 'horoscope' || $route.modal === 'close' ? 1 : 0}
         >
             <div class="name">
                 {item.name}

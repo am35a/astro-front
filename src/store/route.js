@@ -11,7 +11,7 @@ function f() {
         rotate: undefined
     }
 
-    const { subscribe, set } = writable(data)
+    const { subscribe, set, update } = writable(data)
 
     return {
         subscribe,
@@ -135,14 +135,14 @@ function f() {
             if (data.history.at(-1) !== route) {
                 data.history.push(route)
                 data.segment = route
-                set(data)
+                // set(data)
             }
         },
         back: () => {
             if (data.history.length > 1) {
                 data.history.pop()
                 data.segment = data.history.at(-1)
-                set(data)
+                // set(data)
             }
         }
     }
