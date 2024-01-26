@@ -31,7 +31,7 @@ function f() {
         modalMotion: (state) => {
             data.modalMotion = state
             set(data)
-            console.log(`modalMotion: ${data.modalMotion}`)
+            // console.log(`modalMotion: ${data.modalMotion}`)
         },
         rotate: (state) => {
             data.rotate = state
