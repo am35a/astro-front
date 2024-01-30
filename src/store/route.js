@@ -8,7 +8,7 @@ function f() {
         segment: 'horoscope',
         modal: 'close', // states: close, open or lock
         modalMotion: false,
-        rotate: undefined
+        rotate: undefined, // states left, right or none
     }
 
     const { subscribe, set, update } = writable(data)
@@ -34,11 +34,16 @@ function f() {
             // console.log(`modalMotion: ${data.modalMotion}`)
         },
         rotate: (state) => {
-            data.rotate = state
-            set(data)
+            if (data.rotate === undefined) {
+                data.rotate = state
+                set(data)
+                setTimeout(function() {
+                    data.rotate = undefined
+                }, 375)
+            }
         },
         gesture: ({name = undefined, direction = undefined}) => {
-            data.rotate = undefined // reset rotation for each gesture call
+            // data.rotate = undefined // reset rotation for each gesture call
             if (name === 'swipe') {
                 switch (direction) {
                     case 'left':
@@ -46,6 +51,7 @@ function f() {
                         switch (data.segment) {
                             case 'horoscope':
                                 // if (data.modal === 'close') {
+                                if (data.rotate === undefined)
                                     route.rotate('left')
                                 // }
                                 break
@@ -87,7 +93,8 @@ function f() {
                         switch (data.segment) {
                             case 'horoscope':
                                 // if (data.modal === 'close') {
-                                    route.rotate('right')
+                                    if (data.rotate === undefined)
+                                        route.rotate('right')
                                 // }
                                 break
                             case 'authorization':
